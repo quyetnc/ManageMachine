@@ -1,0 +1,254 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Infrastructure\\ManageMachine.Infrastructure.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Application\\ManageMachine.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Application\\ManageMachine.Application.csproj",
+        "projectName": "ManageMachine.Application",
+        "projectPath": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Application\\ManageMachine.Application.csproj",
+        "packagesPath": "C:\\Users\\quyet\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\quyet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Domain\\ManageMachine.Domain.csproj": {
+                "projectPath": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Domain\\ManageMachine.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[12.1.1, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Domain\\ManageMachine.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Domain\\ManageMachine.Domain.csproj",
+        "projectName": "ManageMachine.Domain",
+        "projectPath": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Domain\\ManageMachine.Domain.csproj",
+        "packagesPath": "C:\\Users\\quyet\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\quyet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Infrastructure\\ManageMachine.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Infrastructure\\ManageMachine.Infrastructure.csproj",
+        "projectName": "ManageMachine.Infrastructure",
+        "projectPath": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Infrastructure\\ManageMachine.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\quyet\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\quyet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Application\\ManageMachine.Application.csproj": {
+                "projectPath": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Application\\ManageMachine.Application.csproj"
+              },
+              "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Domain\\ManageMachine.Domain.csproj": {
+                "projectPath": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.Domain\\ManageMachine.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.15.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

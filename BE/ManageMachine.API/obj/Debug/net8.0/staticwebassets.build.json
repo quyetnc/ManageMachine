@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "7gw25YHHD02GqjM8VmOQkdmjLVMNVu5z00krh7zRVmc=",
+  "Source": "ManageMachine.API",
+  "BasePath": "_content/ManageMachine.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
