@@ -66,12 +66,7 @@ namespace ManageMachine.Application.Services.Implementations
 
         public async Task<IReadOnlyList<MachineDto>> GetAllAsync()
         {
-            var machines = await _machineRepository.GetAllAsync();
-            // TODO: Include navigation properties in Repository layer or mapped manually if LazyLoading is off
-            // Assuming Repository handles Includes or we use specific Get methods.
-            // For now, mapping might be partial if Includes aren't set.
-            // I'll rely on Repository implementation to include children or use ProjectTo.
-            // For simplicity, I'll return mapped list.
+            var machines = await _machineRepository.GetAllWithDetailsAsync();
             return _mapper.Map<IReadOnlyList<MachineDto>>(machines);
         }
 
@@ -90,10 +85,58 @@ namespace ManageMachine.Application.Services.Implementations
 
         public async Task UpdateAsync(int id, CreateMachineDto updateDto)
         {
-            var machine = await _machineRepository.GetByIdAsync(id);
-            if (machine == null) throw new Exception("Machine not found");
+            // 1. Load machine with existing parameters
+            var machine = await _machineRepository.GetByIdWithDetailsAsync(id);
+            if (machine == null) throw new Exception($"Machine with id {id} not found");
 
-            _mapper.Map(updateDto, machine);
+            // 2. Update scalar properties (ignore Parameters in AutoMapper if possible, or mapping overrides it)
+            // To be safe, we map scalars, but we need to ensure AutoMapper doesn't replace the Parameters collection with new objects immediately causing issues.
+            // A safer way is to map properties manually or configure Ignore for Parameters in the map.
+            // For now, let's map but assume we need to fix the collection. 
+            // Actually, if we map CreateMachineDto -> Machine, AutoMapper MIGHT replace the collection reference or clear+add.
+            // Let's do scalar update explicitly to avoid messing up the collection tracking.
+            
+            machine.Name = updateDto.Name;
+            machine.Description = updateDto.Description;
+            machine.ImageUrl = updateDto.ImageUrl;
+            machine.MachineTypeId = updateDto.MachineTypeId;
+
+            // 3. Sync Parameters
+            if (updateDto.Parameters != null)
+            {
+                // Update existing or Add new
+                foreach (var paramDto in updateDto.Parameters)
+                {
+                    var existingParam = machine.Parameters.FirstOrDefault(p => p.ParameterId == paramDto.ParameterId);
+                    if (existingParam != null)
+                    {
+                        // Update
+                        existingParam.Value = paramDto.Value;
+                    }
+                    else
+                    {
+                        // Add New
+                        machine.Parameters.Add(new MachineParameter
+                        {
+                            MachineId = machine.Id,
+                            ParameterId = paramDto.ParameterId,
+                            Value = paramDto.Value
+                        });
+                    }
+                }
+
+                // Optional: Remove parameters not in DTO? 
+                // If the UI sends ALL active parameters, then missing ones implies deletion.
+                // Let's assume yes for a full update.
+                var dtoParamIds = updateDto.Parameters.Select(p => p.ParameterId).ToList();
+                var paramsToRemove = machine.Parameters.Where(p => !dtoParamIds.Contains(p.ParameterId)).ToList();
+                
+                foreach (var p in paramsToRemove)
+                {
+                    machine.Parameters.Remove(p);
+                }
+            }
+
             await _machineRepository.UpdateAsync(machine);
         }
 

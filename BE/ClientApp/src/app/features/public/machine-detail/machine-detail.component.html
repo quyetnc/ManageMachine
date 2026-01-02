@@ -1,0 +1,43 @@
+<div class="detail-container">
+    <mat-toolbar color="primary">
+        <button mat-icon-button routerLink="/public/scan">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span>Machine Details</span>
+    </mat-toolbar>
+
+    <div class="content" *ngIf="loading">
+        <div class="spinner-container">
+            Loading...
+        </div>
+    </div>
+
+    <div class="content error" *ngIf="!loading && error">
+        <mat-icon color="warn" style="font-size: 48px; width: 48px; height: 48px;">error_outline</mat-icon>
+        <p>{{ error }}</p>
+        <button mat-stroked-button color="primary" routerLink="/public/scan">Scan Again</button>
+    </div>
+
+    <div class="content" *ngIf="!loading && machine">
+        <mat-card class="machine-card">
+            <img mat-card-image [src]="machine.imageUrl || 'assets/machine-placeholder.png'" alt="Machine Image">
+            <mat-card-header>
+                <mat-card-title>{{ machine.name }}</mat-card-title>
+                <mat-card-subtitle>{{ machine.machineTypeName }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p class="description">{{ machine.description }}</p>
+
+                <mat-divider></mat-divider>
+                <h3>Parameters</h3>
+                <mat-list>
+                    <mat-list-item *ngFor="let p of machine.parameters">
+                        <mat-icon matListItemIcon>speed</mat-icon>
+                        <div matListItemTitle>{{ p.parameterName }}</div>
+                        <div matListItemLine>{{ p.value }} {{ p.parameterUnit }}</div>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

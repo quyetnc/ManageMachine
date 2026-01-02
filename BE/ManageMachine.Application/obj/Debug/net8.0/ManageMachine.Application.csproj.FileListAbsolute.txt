@@ -13,3 +13,4 @@ C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Application\obj\D
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Application\obj\Debug\net8.0\refint\ManageMachine.Application.dll
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Application\obj\Debug\net8.0\ManageMachine.Application.pdb
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Application\obj\Debug\net8.0\ref\ManageMachine.Application.dll
+C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Application\obj\Debug\net8.0\ManageMachine.Application.sourcelink.json

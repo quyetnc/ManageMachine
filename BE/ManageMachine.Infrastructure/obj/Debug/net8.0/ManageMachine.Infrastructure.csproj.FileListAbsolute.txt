@@ -15,3 +15,4 @@ C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\ob
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\obj\Debug\net8.0\refint\ManageMachine.Infrastructure.dll
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\obj\Debug\net8.0\ManageMachine.Infrastructure.pdb
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\obj\Debug\net8.0\ref\ManageMachine.Infrastructure.dll
+C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\obj\Debug\net8.0\ManageMachine.Infrastructure.sourcelink.json

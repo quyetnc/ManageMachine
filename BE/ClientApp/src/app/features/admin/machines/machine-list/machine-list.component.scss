@@ -1,0 +1,23 @@
+.list-container {
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-field {
+    width: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-column-actions {
+    width: 120px;
+    text-align: right;
+}

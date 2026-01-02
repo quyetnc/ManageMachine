@@ -26,6 +26,14 @@ namespace ManageMachine.API.Controllers
             return Ok(await _service.GetAllAsync());
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<MachineTypeDto>> GetById(int id)
+        {
+            var item = await _service.GetByIdAsync(id);
+            if (item == null) return NotFound();
+            return Ok(item);
+        }
+
         [HttpPost]
         public async Task<ActionResult<MachineTypeDto>> Create(CreateMachineTypeDto dto)
         {
@@ -64,6 +72,14 @@ namespace ManageMachine.API.Controllers
         public async Task<ActionResult<IReadOnlyList<ParameterDto>>> GetAll()
         {
             return Ok(await _service.GetAllAsync());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ParameterDto>> GetById(int id)
+        {
+            var item = await _service.GetByIdAsync(id);
+            if (item == null) return NotFound();
+            return Ok(item);
         }
 
         [HttpPost]

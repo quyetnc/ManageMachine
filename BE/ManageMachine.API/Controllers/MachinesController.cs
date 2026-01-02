@@ -55,15 +55,8 @@ namespace ManageMachine.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Update(int id, CreateMachineDto dto)
         {
-            try
-            {
-                await _service.UpdateAsync(id, dto);
-                return NoContent();
-            }
-            catch
-            {
-                return NotFound();
-            }
+            await _service.UpdateAsync(id, dto);
+            return NoContent();
         }
 
         [HttpDelete("{id}")]

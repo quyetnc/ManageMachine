@@ -1,0 +1,41 @@
+.scan-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.scanner-wrapper {
+    flex: 1;
+    position: relative;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+ngx-scanner-qrcode {
+    width: 100%;
+    height: 100%;
+}
+
+.controls {
+    position: absolute;
+    bottom: 40px;
+    z-index: 99;
+}
+
+.instruction {
+    position: absolute;
+    top: 20px;
+    color: white;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 16px;
+    border-radius: 20px;
+}

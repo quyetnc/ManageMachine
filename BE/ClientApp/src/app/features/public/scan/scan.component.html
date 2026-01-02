@@ -1,0 +1,28 @@
+<div class="scan-container">
+    <mat-toolbar color="primary">
+        <span>Scan QR Code</span>
+        <span class="spacer"></span>
+        <button mat-icon-button routerLink="/auth/login">
+            <mat-icon>login</mat-icon>
+        </button>
+    </mat-toolbar>
+
+    <div class="scanner-wrapper">
+        <!-- Scanner Component -->
+        <ngx-scanner-qrcode #action="scanner" [config]="config" (event)="onEvent($event)">
+        </ngx-scanner-qrcode>
+
+        <div class="controls">
+            <button mat-fab color="warn" *ngIf="action.isStart" (click)="handle(action, 'stop')">
+                <mat-icon>stop</mat-icon>
+            </button>
+            <button mat-fab color="primary" *ngIf="!action.isStart" (click)="handle(action, 'start')">
+                <mat-icon>videocam</mat-icon>
+            </button>
+        </div>
+
+        <p class="instruction" *ngIf="!action.isStart">Click camera icon to start scanning</p>
+        <p class="instruction" *ngIf="action.isStart && action.isLoading">Loading camera...</p>
+        <p class="instruction" *ngIf="action.isStart && !action.isLoading">Point camera at QR Code</p>
+    </div>
+</div>

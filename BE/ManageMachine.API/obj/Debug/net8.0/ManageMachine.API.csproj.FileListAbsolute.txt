@@ -156,3 +156,4 @@ C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.API\obj\Debug\net
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.API\obj\Debug\net8.0\ManageMachine.API.pdb
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.API\obj\Debug\net8.0\ManageMachine.API.genruntimeconfig.cache
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.API\obj\Debug\net8.0\ref\ManageMachine.API.dll
+C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.API\obj\Debug\net8.0\ManageMachine.API.sourcelink.json

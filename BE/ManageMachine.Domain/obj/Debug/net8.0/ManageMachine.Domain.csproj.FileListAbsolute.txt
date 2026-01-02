@@ -9,3 +9,4 @@ C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Domain\obj\Debug\
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Domain\obj\Debug\net8.0\refint\ManageMachine.Domain.dll
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Domain\obj\Debug\net8.0\ManageMachine.Domain.pdb
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Domain\obj\Debug\net8.0\ref\ManageMachine.Domain.dll
+C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Domain\obj\Debug\net8.0\ManageMachine.Domain.sourcelink.json

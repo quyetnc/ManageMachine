@@ -19,5 +19,14 @@ namespace ManageMachine.Infrastructure.Persistence.Repositories
                     .ThenInclude(mp => mp.Parameter)
                 .FirstOrDefaultAsync(m => m.Id == id);
         }
+
+        public async Task<IReadOnlyList<Machine>> GetAllWithDetailsAsync()
+        {
+            return await _context.Machines
+                .Include(m => m.MachineType)
+                .Include(m => m.Parameters)
+                    .ThenInclude(mp => mp.Parameter)
+                .ToListAsync();
+        }
     }
 }
