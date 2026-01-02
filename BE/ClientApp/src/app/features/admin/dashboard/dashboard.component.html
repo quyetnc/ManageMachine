@@ -1,1 +1,39 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+    <h2>Dashboard</h2>
+
+    <div class="stats-grid" *ngIf="stats">
+        <mat-card class="stat-card">
+            <mat-card-header>
+                <mat-card-title>{{ stats.totalMachines }}</mat-card-title>
+                <mat-card-subtitle>Total Machines</mat-card-subtitle>
+            </mat-card-header>
+            <mat-icon color="primary">precision_manufacturing</mat-icon>
+        </mat-card>
+
+        <mat-card class="stat-card">
+            <mat-card-header>
+                <mat-card-title>{{ stats.totalTypes }}</mat-card-title>
+                <mat-card-subtitle>Machine Types</mat-card-subtitle>
+            </mat-card-header>
+            <mat-icon color="accent">category</mat-icon>
+        </mat-card>
+    </div>
+
+    <div class="charts-container" *ngIf="stats">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Machines by Type</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="chart-wrapper">
+                    <canvas baseChart [data]="pieChartData" [type]="pieChartType" [options]="pieChartOptions">
+                    </canvas>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div *ngIf="loading">
+        Loading statistics...
+    </div>
+</div>

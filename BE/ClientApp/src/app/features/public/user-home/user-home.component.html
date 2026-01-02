@@ -1,0 +1,62 @@
+<div class="mobile-app-container">
+    <!-- App Header -->
+    <div class="app-header">
+        <div class="header-content">
+            <div class="user-info">
+                <span class="greeting">Hello, User</span>
+                <span class="app-name">ManageMachine</span>
+            </div>
+            <button mat-icon-button class="logout-btn" (click)="logout()">
+                <mat-icon>logout</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scrollable Content -->
+    <div class="content-scroll-area">
+        <div class="section-title">
+            <h3>Categories</h3>
+            <span class="count-badge" *ngIf="!loading">{{ types.length }}</span>
+        </div>
+
+        <div class="grid-container" *ngIf="!loading">
+            <div class="category-card" *ngFor="let type of types" (click)="openType(type.id)" matRipple>
+                <div class="category-icon">
+                    <mat-icon>category</mat-icon>
+                </div>
+                <div class="category-details">
+                    <span class="category-name">{{ type.name }}</span>
+                    <span class="category-action">Browse <mat-icon>chevron_right</mat-icon></span>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="loading" class="loading-state">
+            <mat-spinner diameter="32"></mat-spinner>
+            <span>Loading...</span>
+        </div>
+
+        <!-- Spacer for Bottom Bar -->
+        <div class="bottom-spacer"></div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav-bar">
+        <div class="nav-item active">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+        </div>
+
+        <!-- Floating Scan Button -->
+        <div class="scan-button-wrapper">
+            <button class="scan-fab" (click)="openScanner()" matRipple>
+                <mat-icon>qr_code_scanner</mat-icon>
+            </button>
+        </div>
+
+        <div class="nav-item" (click)="openProfile()">
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+        </div>
+    </div>
+</div>

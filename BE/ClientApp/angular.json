@@ -27,7 +27,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "input": "node_modules/ngx-scanner-qrcode/wasm",
+                "glob": "**/*",
+                "output": "/assets/wasm"
+              }
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
@@ -91,7 +96,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "input": "node_modules/ngx-scanner-qrcode/wasm",
+                "glob": "**/*",
+                "output": "/assets/wasm"
+              }
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",

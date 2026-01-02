@@ -18,6 +18,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { QRCodeModule } from 'angularx-qrcode';
+import { QrViewDialogComponent } from './components/qr-view-dialog.component';
 
 const MATERIAL_MODULES = [
   MatButtonModule,
@@ -33,24 +37,60 @@ const MATERIAL_MODULES = [
   MatPaginatorModule,
   MatSortModule,
   MatSelectModule,
-  MatOptionModule
+  MatOptionModule,
+  MatDialogModule
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    QrViewDialogComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    ...MATERIAL_MODULES
+    // Material
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    QRCodeModule
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    ...MATERIAL_MODULES
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    QRCodeModule
   ]
 })
 export class SharedModule { }

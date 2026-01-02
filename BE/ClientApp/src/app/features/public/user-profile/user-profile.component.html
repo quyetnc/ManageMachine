@@ -1,0 +1,73 @@
+<div class="mobile-app-container">
+    <!-- App Header -->
+    <div class="app-header">
+        <span class="header-title">My Profile</span>
+        <button mat-icon-button class="logout-btn" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </div>
+
+    <!-- Content -->
+    <div class="content-scroll-area">
+        <div class="profile-header">
+            <div class="avatar-circle">
+                <mat-icon>person</mat-icon>
+            </div>
+            <h2 class="username">{{ user?.username || 'User' }}</h2>
+            <span class="role-badge">{{ user?.role || 'Member' }}</span>
+        </div>
+
+        <div class="info-section">
+            <h3>Account Details</h3>
+
+            <div class="info-item">
+                <div class="icon-box">
+                    <mat-icon>badge</mat-icon>
+                </div>
+                <div class="info-content">
+                    <label>Username</label>
+                    <p>{{ user?.username }}</p>
+                </div>
+            </div>
+
+            <!-- Add more fields if available in token/user object -->
+            <div class="info-item">
+                <div class="icon-box">
+                    <mat-icon>security</mat-icon>
+                </div>
+                <div class="info-content">
+                    <label>Role</label>
+                    <p>{{ user?.role }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-section">
+            <button mat-stroked-button color="warn" class="full-width-btn" (click)="logout()">
+                Log Out
+            </button>
+        </div>
+
+        <div class="bottom-spacer"></div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav-bar">
+        <div class="nav-item" (click)="goBack()">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+        </div>
+
+        <!-- Placeholder for symmetry -->
+        <div class="scan-button-wrapper">
+            <button class="scan-fab" disabled>
+                <mat-icon>qr_code_scanner</mat-icon>
+            </button>
+        </div>
+
+        <div class="nav-item active">
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+        </div>
+    </div>
+</div>

@@ -4,11 +4,13 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5037/api/Auth'; // Hardcoded for now, should use environment
+  private apiUrl = `${environment.apiUrl}/Auth`;
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
@@ -30,7 +32,7 @@ export class AuthService {
           const decoded: any = jwtDecode(response.token);
           const user = {
             ...response,
-            // exp: decoded.exp
+            role: decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] || 'User'
           };
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
@@ -42,6 +44,6 @@ export class AuthService {
   logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
   }
 }

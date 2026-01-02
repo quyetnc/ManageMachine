@@ -2,8 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 import { Machine, MachineService } from 'src/app/core/services/machine.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { QrViewDialogComponent } from 'src/app/shared/components/qr-view-dialog.component';
 
 @Component({
   selector: 'app-machine-list',
@@ -17,7 +19,7 @@ export class MachineListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private machineService: MachineService, private snackBar: MatSnackBar) {
+  constructor(private machineService: MachineService, private snackBar: MatSnackBar, private dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -61,5 +63,12 @@ export class MachineListComponent implements OnInit {
         }
       });
     }
+  }
+
+  showQr(machine: Machine) {
+    this.dialog.open(QrViewDialogComponent, {
+      width: '400px',
+      data: { qrCodeData: machine.qrCodeData, machineName: machine.name }
+    });
   }
 }

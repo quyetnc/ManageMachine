@@ -8,6 +8,8 @@ import {
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
+import { environment } from 'src/environments/environment';
+
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
@@ -16,7 +18,7 @@ export class JwtInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const currentUser = this.authService.currentUserValue;
     const isLoggedIn = currentUser && currentUser.token;
-    const isApiUrl = request.url.startsWith('http://localhost:5037'); // Check if request is to our API
+    const isApiUrl = request.url.startsWith(environment.apiUrl);
 
     if (isLoggedIn && isApiUrl) {
       request = request.clone({

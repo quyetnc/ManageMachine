@@ -42,7 +42,13 @@ export class LoginComponent {
     this.authService.login(this.loginForm.value)
       .subscribe({
         next: () => {
-          this.router.navigate([this.returnUrl]);
+          // Role Based Redirect
+          const user = this.authService.currentUserValue;
+          if (user?.role === 'Admin') {
+            this.router.navigate(['/dashboard']); // Explicitly go to dashboard
+          } else {
+            this.router.navigate(['/public']);
+          }
         },
         error: error => {
           this.snackBar.open(error.error?.message || 'Login failed', 'Close', { duration: 3000 });

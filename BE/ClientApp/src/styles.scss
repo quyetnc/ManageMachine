@@ -1,4 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+  height: 100%;
+  overscroll-behavior-y: none;
+  /* Prevent elastic scrolling/bounce */
+  -webkit-tap-highlight-color: transparent;
+  /* Remove tap highlight */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  user-select: none;
+  /* Prevent text selection */
+  -webkit-user-select: none;
+  touch-action: pan-x pan-y;
+  /* Disable double-tap zoom specifically, though viewport handles most */
+}
+
+/* Allow text selection in inputs */
+input,
+textarea {
+  user-select: text;
+  -webkit-user-select: text;
+}

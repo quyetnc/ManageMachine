@@ -9,7 +9,7 @@ namespace ManageMachine.API.Controllers
 {
     [ApiController]
     [Route("api/types")]
-    [Authorize(Roles = "Admin")] // Only admin manages types
+    [Authorize] // Allow any authenticated user by default
     public class MachineTypesController : ControllerBase
     {
         private readonly IMachineTypeService _service;
@@ -20,7 +20,6 @@ namespace ManageMachine.API.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous] // Maybe users can see types? Or just authenticated users. Let's say Auth users.
         public async Task<ActionResult<IReadOnlyList<MachineTypeDto>>> GetAll()
         {
             return Ok(await _service.GetAllAsync());
@@ -35,6 +34,7 @@ namespace ManageMachine.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<MachineTypeDto>> Create(CreateMachineTypeDto dto)
         {
             var result = await _service.CreateAsync(dto);
@@ -42,6 +42,7 @@ namespace ManageMachine.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Update(int id, CreateMachineTypeDto dto)
         {
             await _service.UpdateAsync(id, dto);
@@ -49,6 +50,7 @@ namespace ManageMachine.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete(int id)
         {
             await _service.DeleteAsync(id);
@@ -58,7 +60,7 @@ namespace ManageMachine.API.Controllers
 
     [ApiController]
     [Route("api/parameters")]
-    [Authorize(Roles = "Admin")]
+    [Authorize] // Allow any authenticated user by default
     public class ParametersController : ControllerBase
     {
         private readonly IParameterService _service;
@@ -83,6 +85,7 @@ namespace ManageMachine.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ParameterDto>> Create(CreateParameterDto dto)
         {
             var result = await _service.CreateAsync(dto);
@@ -90,6 +93,7 @@ namespace ManageMachine.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Update(int id, CreateParameterDto dto)
         {
             await _service.UpdateAsync(id, dto);
@@ -97,6 +101,7 @@ namespace ManageMachine.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete(int id)
         {
             await _service.DeleteAsync(id);

@@ -1,43 +1,56 @@
-<div class="detail-container">
-    <mat-toolbar color="primary">
-        <button mat-icon-button routerLink="/public/scan">
+<div class="mobile-app-container" *ngIf="machine">
+    <!-- Header -->
+    <div class="app-header">
+        <button mat-icon-button class="back-btn" (click)="goBack()">
             <mat-icon>arrow_back</mat-icon>
         </button>
-        <span>Machine Details</span>
-    </mat-toolbar>
-
-    <div class="content" *ngIf="loading">
-        <div class="spinner-container">
-            Loading...
+        <span class="header-title">Machine Details</span>
+        <div class="header-actions">
+            <!-- Placeholder -->
         </div>
     </div>
 
-    <div class="content error" *ngIf="!loading && error">
-        <mat-icon color="warn" style="font-size: 48px; width: 48px; height: 48px;">error_outline</mat-icon>
-        <p>{{ error }}</p>
-        <button mat-stroked-button color="primary" routerLink="/public/scan">Scan Again</button>
-    </div>
+    <!-- Scrollable Content -->
+    <div class="content-scroll-area">
+        <div class="detail-header-card">
+            <div class="image-section">
+                <mat-icon>precision_manufacturing</mat-icon>
+            </div>
+            <div class="title-section">
+                <h2>{{ machine.name }}</h2>
+                <span class="type-badge">{{ machine.machineType?.name }}</span>
+            </div>
+            <div class="status-section">
+                <span class="status-chip active">Active</span>
+            </div>
+        </div>
 
-    <div class="content" *ngIf="!loading && machine">
-        <mat-card class="machine-card">
-            <img mat-card-image [src]="machine.imageUrl || 'assets/machine-placeholder.png'" alt="Machine Image">
-            <mat-card-header>
-                <mat-card-title>{{ machine.name }}</mat-card-title>
-                <mat-card-subtitle>{{ machine.machineTypeName }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <p class="description">{{ machine.description }}</p>
+        <div class="info-card">
+            <h3>Description</h3>
+            <p>{{ machine.description || 'No description available for this machine.' }}</p>
+        </div>
 
-                <mat-divider></mat-divider>
-                <h3>Parameters</h3>
-                <mat-list>
-                    <mat-list-item *ngFor="let p of machine.parameters">
-                        <mat-icon matListItemIcon>speed</mat-icon>
-                        <div matListItemTitle>{{ p.parameterName }}</div>
-                        <div matListItemLine>{{ p.value }} {{ p.parameterUnit }}</div>
-                    </mat-list-item>
-                </mat-list>
-            </mat-card-content>
-        </mat-card>
+        <div class="info-card">
+            <h3>Technical Specs</h3>
+            <div class="spec-row">
+                <span class="label">Model:</span>
+                <span class="value">XP-2000</span>
+            </div>
+            <div class="spec-row">
+                <span class="label">Serial:</span>
+                <span class="value">SN-{{ machine.id }}</span>
+            </div>
+            <div class="spec-row">
+                <span class="label">Installed:</span>
+                <span class="value">2023-10-15</span>
+            </div>
+        </div>
+
+        <div class="bottom-spacer"></div>
     </div>
+</div>
+
+<div *ngIf="!machine" class="loading-state">
+    <mat-spinner diameter="32"></mat-spinner>
+    <p>Loading details...</p>
 </div>

@@ -1,0 +1,51 @@
+<div class="mobile-app-container">
+    <!-- Header -->
+    <div class="app-header">
+        <button mat-icon-button class="back-btn" (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span class="header-title">{{ typeName }}</span>
+        <div class="header-actions">
+            <!-- Placeholder for balance -->
+        </div>
+    </div>
+
+    <!-- Scrollable Content -->
+    <div class="content-scroll-area">
+        <div class="list-container" *ngIf="!loading">
+            <div *ngIf="filteredMachines.length === 0" class="empty-state">
+                <div class="empty-icon">
+                    <mat-icon>precision_manufacturing</mat-icon>
+                </div>
+                <h3>No Machines Found</h3>
+                <p>This category is currently empty.</p>
+            </div>
+
+            <div class="machine-card" *ngFor="let machine of filteredMachines" (click)="openMachine(machine.id)"
+                matRipple>
+                <div class="machine-image-placeholder">
+                    <!-- Real image would go here -->
+                    <mat-icon>image</mat-icon>
+                </div>
+                <div class="machine-info">
+                    <h4>{{ machine.name }}</h4>
+                    <p class="machine-ref">{{ machine.machineType?.name }}</p>
+                    <div class="machine-status">
+                        <span class="status-dot"></span>
+                        Active
+                    </div>
+                </div>
+                <div class="arrow-container">
+                    <mat-icon>chevron_right</mat-icon>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="loading" class="loading-state">
+            <mat-spinner diameter="32"></mat-spinner>
+            <span>Loading machines...</span>
+        </div>
+
+        <div class="bottom-spacer"></div>
+    </div>
+</div>

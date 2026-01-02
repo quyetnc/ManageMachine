@@ -1,4 +1,5 @@
 using ManageMachine.Application.DTOs.Machine;
+using ManageMachine.Application.DTOs.Dashboard; // Add this
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,6 +12,11 @@ namespace ManageMachine.Application.Services
         Task<MachineTypeDto> CreateAsync(CreateMachineTypeDto createDto);
         Task UpdateAsync(int id, CreateMachineTypeDto updateDto);
         Task DeleteAsync(int id);
+    }
+
+    public interface IDashboardService
+    {
+        Task<DashboardStatsDto> GetStatsAsync();
     }
 
     public interface IParameterService

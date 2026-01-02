@@ -1,41 +1,151 @@
-.scan-container {
+// Mobile Theme Variables
+$primary: #4f46e5;
+$background: #000000; // Dark background for camera feel
+$surface: #ffffff;
+$text-light: #ffffff;
+
+:host {
+    display: block;
     height: 100vh;
+    background-color: $background;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+.mobile-app-container {
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.spacer {
-    flex: 1 1 auto;
+.app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 20;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
+
+    .back-btn {
+        color: $text-light;
+    }
+
+    .header-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: $text-light;
+    }
+
+    .header-actions {
+        width: 40px;
+    }
 }
 
-.scanner-wrapper {
+.scan-container {
     flex: 1;
-    position: relative;
-    background-color: #000;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    position: relative;
 }
 
-ngx-scanner-qrcode {
+.camera-wrapper {
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    /* Added relative positioning */
+
+    .loading-overlay,
+    .error-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        z-index: 10;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .error-overlay {
+        mat-icon {
+            font-size: 48px;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 16px;
+        }
+
+        p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .small-text {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+    }
+
+    .loading-overlay {
+        p {
+            margin-top: 16px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+    }
+
+    // Style the actual camera element if possible, or wrapper
+    ::ng-deep video {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+.instruction-text {
+    position: fixed;
+    bottom: 120px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+    z-index: 10;
+
+    p {
+        color: rgba(255, 255, 255, 0.8);
+        background: rgba(0, 0, 0, 0.4);
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+    }
 }
 
 .controls {
-    position: absolute;
+    position: fixed;
     bottom: 40px;
-    z-index: 99;
-}
+    display: flex;
+    gap: 24px;
+    z-index: 20;
+    left: 50%;
+    transform: translateX(-50%);
 
-.instruction {
-    position: absolute;
-    top: 20px;
-    color: white;
-    z-index: 99;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 8px 16px;
-    border-radius: 20px;
+    .control-btn {
+        transform: scale(1.2);
+    }
 }

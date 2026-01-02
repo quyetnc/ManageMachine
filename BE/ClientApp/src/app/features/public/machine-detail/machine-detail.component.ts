@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MachineService, Machine } from 'src/app/core/services/machine.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -15,21 +15,21 @@ export class MachineDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private machineService: MachineService,
     private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
-    const guid = this.route.snapshot.paramMap.get('id'); // Assuming this param is the QR GUID
-    if (guid) {
-      // Implement GetByQRCode in Service
-      // For now, since we don't have the endpoint, I'll assume we pass ID
-      // Or I need to add the endpoint to backend.
-      // Let's check if the user passes ID or GUID. 
-      // In ScanComponent, I passed 'value' which is GUID.
-      // SO I need a way to look up by GUID.
-      // Temporary hack: Fetch all machines and find one with GUID (not efficient but works for small app)
-      this.loadByGuid(guid);
+    const idOrGuid = this.route.snapshot.paramMap.get('id');
+    if (idOrGuid) {
+      if (/^\d+$/.test(idOrGuid)) {
+        // It's a numeric ID (from list navigation)
+        this.loadDetail(Number(idOrGuid));
+      } else {
+        // It's a GUID (from QR scan)
+        this.loadByGuid(idOrGuid);
+      }
     }
   }
 
@@ -63,5 +63,9 @@ export class MachineDetailComponent implements OnInit {
         this.error = 'Failed to load machine details';
       }
     });
+  }
+
+  goBack() {
+    this.router.navigate(['/public']);
   }
 }

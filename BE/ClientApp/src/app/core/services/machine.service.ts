@@ -11,6 +11,7 @@ export interface Machine {
   qrCodeData: string;
   machineTypeId: number;
   machineTypeName: string;
+  machineType?: MachineType;
   parameters: MachineParameter[];
 }
 
