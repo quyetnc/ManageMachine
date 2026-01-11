@@ -93,6 +93,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 var app = builder.Build();
 
+// Run Seeder
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = scope.ServiceProvider.GetRequiredService<ManageMachine.Infrastructure.Persistence.Seeders.DbSeeder>();
+    await seeder.SeedAsync();
+}
+
 // Configure the HTTP request pipeline.
 // if (app.Environment.IsDevelopment()) // Setup Swagger even in prod for demo if needed, but dev is fine
 {

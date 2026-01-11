@@ -5,6 +5,7 @@ using ManageMachine.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ManageMachine.Infrastructure.Persistence.Seeders;
 
 namespace ManageMachine.Infrastructure
 {
@@ -17,7 +18,9 @@ namespace ManageMachine.Infrastructure
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IMachineRepository, MachineRepository>();
+            services.AddScoped<IMachineRepository, MachineRepository>();
             services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+            services.AddScoped<DbSeeder>(); // Register Seeder
 
             return services;
         }
