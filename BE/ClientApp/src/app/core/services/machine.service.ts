@@ -138,4 +138,8 @@ export class MachineService {
   deleteParameter(id: number): Observable<void> {
     return this.api.delete(`parameters/${id}`);
   }
+
+  getHistory(id: number): Observable<any[]> {
+    return this.api.get<any[]>(`Machines/${id}/history`);
+  }
 }

@@ -80,9 +80,14 @@
                 <mat-icon>info</mat-icon>
                 <span>Borrowed from: <strong>{{ machine.userFullName }}</strong> ({{ machine.status }})</span>
             </div>
+
+            <!-- History Link Button -->
+            <button mat-stroked-button class="history-btn" (click)="viewHistory()">
+                <mat-icon>history</mat-icon> View Transfer History
+            </button>
         </div>
 
-        <div class="bottom-spacer"></div>
+
     </div>
 </div>
 

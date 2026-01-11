@@ -62,6 +62,9 @@
                     <button mat-icon-button color="primary" [routerLink]="['/machines/edit', row.id]">
                         <mat-icon>edit</mat-icon>
                     </button>
+                    <button mat-icon-button color="accent" (click)="viewHistory(row)" matTooltip="View History">
+                        <mat-icon>history</mat-icon>
+                    </button>
                     <button mat-icon-button color="accent" (click)="showQr(row)" matTooltip="Print QR">
                         <mat-icon>qr_code</mat-icon>
                     </button>

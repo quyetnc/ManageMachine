@@ -1,6 +1,7 @@
 using AutoMapper;
 using ManageMachine.Application.Common;
 using ManageMachine.Application.DTOs.Machine;
+using ManageMachine.Application.DTOs.Requests;
 using ManageMachine.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,17 +15,20 @@ namespace ManageMachine.Application.Services.Implementations
         private readonly IMachineRepository _machineRepository;
         private readonly IGenericRepository<MachineParameter> _machineParameterRepository;
         private readonly IGenericRepository<Parameter> _parameterRepository;
+        private readonly IGenericRepository<MachineTransferRequest> _requestRepository;
         private readonly IMapper _mapper;
 
         public MachineService(
             IMachineRepository machineRepository,
             IGenericRepository<MachineParameter> machineParameterRepository,
             IGenericRepository<Parameter> parameterRepository,
+            IGenericRepository<MachineTransferRequest> requestRepository,
             IMapper mapper)
         {
             _machineRepository = machineRepository;
             _machineParameterRepository = machineParameterRepository;
             _parameterRepository = parameterRepository;
+            _requestRepository = requestRepository;
             _mapper = mapper;
         }
 
@@ -97,6 +101,23 @@ namespace ManageMachine.Application.Services.Implementations
             if (machine == null) throw new Exception("Machine not found");
 
             if (machine.TenantId != userId) throw new Exception("You can only return machines you are currently holding.");
+
+            // Create a "Return" request log
+            var returnLog = new MachineTransferRequest
+            {
+                MachineId = machineId,
+                FromUserId = userId,
+                ToUserId = machine.UserId.GetValueOrDefault(), // Returned to owner? Or just Available (0)?
+                // Technically "ToUserId" is who received it. 
+                // If returning to storage/pool (Available), maybe ToUserId is Owner or null?
+                // Let's set ToUserId = Owner for traceability, even if status is Available.
+                RequestType = Domain.Enums.RequestType.Return,
+                Status = Domain.Enums.RequestStatus.Approved,
+                Reason = "Machine Returned",
+                CreatedAt = DateTime.UtcNow,
+                ResolvedAt = DateTime.UtcNow
+            };
+            await _requestRepository.AddAsync(returnLog);
 
             machine.TenantId = null;
             machine.Status = Domain.Enums.MachineStatus.Available;
@@ -171,6 +192,31 @@ namespace ManageMachine.Application.Services.Implementations
                 Value = paramDto.Value
             };
             await _machineParameterRepository.AddAsync(machineParam);
+        }
+        public async Task<IReadOnlyList<MachineTransferRequestDto>> GetHistoryAsync(int machineId)
+        {
+            // Use same DTO as requests for simplicity, or create specific History DTO.
+            // Reusing MachineTransferRequestDto is fine.
+            var requests = await _requestRepository.GetAsync(
+                predicate: r => r.MachineId == machineId && (r.Status == Domain.Enums.RequestStatus.Approved || r.Status == Domain.Enums.RequestStatus.Rejected),
+                includeProperties: "FromUser,ToUser",
+                orderBy: q => q.OrderByDescending(r => r.CreatedAt)
+            );
+
+            return requests.Select(r => new MachineTransferRequestDto
+            {
+                Id = r.Id,
+                MachineId = r.MachineId,
+                FromUserId = r.FromUserId,
+                FromUserName = r.FromUser?.FullName ?? "Unknown",
+                ToUserId = r.ToUserId,
+                ToUserName = r.ToUser?.FullName ?? "Unknown", // For return, this might be Owner
+                RequestType = r.RequestType,
+                Status = r.Status,
+                Reason = r.Reason,
+                CreatedAt = r.CreatedAt,
+                ResolvedAt = r.ResolvedAt
+            }).ToList();
         }
     }
 }

@@ -1,4 +1,5 @@
 using ManageMachine.Application.DTOs.Machine;
+using ManageMachine.Application.DTOs.Requests;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -18,5 +19,6 @@ namespace ManageMachine.Application.Services
         Task AddParameterToMachineAsync(int machineId, CreateMachineParameterDto paramDto);
 
         Task ReturnMachineAsync(int machineId, int userId);
+        Task<IReadOnlyList<MachineTransferRequestDto>> GetHistoryAsync(int machineId);
     }
 }

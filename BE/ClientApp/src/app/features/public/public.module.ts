@@ -12,6 +12,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 
 import { TransferDialogComponent } from './machine-detail/transfer-dialog.component';
 import { UserRequestListComponent } from './user-request-list/user-request-list.component';
+import { MachineHistoryComponent } from './machine-history/machine-history.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,9 @@ import { UserRequestListComponent } from './user-request-list/user-request-list.
     TransferDialogComponent,
     UserHomeComponent,
     UserMachineListComponent,
-    UserMachineListComponent,
     UserProfileComponent,
-    UserRequestListComponent
+    UserRequestListComponent,
+    MachineHistoryComponent
   ],
   imports: [
     CommonModule,

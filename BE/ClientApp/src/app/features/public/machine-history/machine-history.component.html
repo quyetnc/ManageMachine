@@ -1,0 +1,72 @@
+<div class="mobile-app-container">
+    <!-- Header -->
+    <div class="app-header">
+        <button mat-icon-button class="back-btn" (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span class="header-title">History: {{ machine?.name || 'Machine' }}</span>
+        <div class="header-actions"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="content-scroll-area">
+        <div class="history-container" *ngIf="!loading && history.length > 0; else emptyState">
+
+            <div class="timeline">
+                <div class="timeline-item" *ngFor="let record of history; let i = index">
+                    <div class="timeline-left">
+                        <div class="date-box">
+                            <span class="day">{{ record.createdAt | date:'dd' }}</span>
+                            <span class="month">{{ record.createdAt | date:'MMM' }}</span>
+                            <span class="year">{{ record.createdAt | date:'yyyy' }}</span>
+                        </div>
+                        <div class="time">{{ record.createdAt | date:'shortTime' }}</div>
+                    </div>
+
+                    <div class="timeline-divider">
+                        <div class="dot" [ngClass]="getHistoryClass(record)">
+                            <mat-icon *ngIf="record.requestType === 2">keyboard_return</mat-icon>
+                            <mat-icon *ngIf="record.requestType !== 2">swap_horiz</mat-icon>
+                        </div>
+                        <div class="line" *ngIf="i < history.length - 1"></div>
+                    </div>
+
+                    <div class="timeline-content card">
+                        <div class="content-header">
+                            <span class="badge" [ngClass]="getHistoryClass(record)">
+                                {{ record.requestType === 2 ? 'Returned' : 'Transferred' }}
+                            </span>
+                        </div>
+                        <div class="content-body">
+                            <ng-container *ngIf="record.requestType === 2; else transferDesc">
+                                <p><strong>{{ record.fromUserName }}</strong> returned the machine.</p>
+                            </ng-container>
+                            <ng-template #transferDesc>
+                                <p><strong>{{ record.fromUserName }}</strong> <mat-icon
+                                        class="tiny-icon">arrow_forward</mat-icon> <strong>{{ record.toUserName
+                                        }}</strong></p>
+                            </ng-template>
+
+                            <p class="reason" *ngIf="record.reason">
+                                <mat-icon>format_quote</mat-icon> {{ record.reason }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-spacer"></div>
+        </div>
+
+        <ng-template #emptyState>
+            <div class="empty-state" *ngIf="!loading">
+                <mat-icon>history</mat-icon>
+                <p>No history records found for this machine.</p>
+            </div>
+            <div class="loading-state" *ngIf="loading">
+                <mat-spinner diameter="32"></mat-spinner>
+                <p>Loading history...</p>
+            </div>
+        </ng-template>
+    </div>
+</div>

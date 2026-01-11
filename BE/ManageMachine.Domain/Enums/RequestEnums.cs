@@ -17,6 +17,7 @@ namespace ManageMachine.Domain.Enums
     public enum RequestType
     {
         Borrow = 0,
-        Repair = 1
+        Repair = 1,
+        Return = 2
     }
 }

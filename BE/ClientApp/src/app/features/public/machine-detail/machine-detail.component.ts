@@ -14,6 +14,7 @@ import { TransferDialogComponent } from './transfer-dialog.component';
 })
 export class MachineDetailComponent implements OnInit {
   machine: Machine | null = null;
+  history: any[] = [];
   loading = true;
   error: string | null = null;
   currentUserId: number | null = null;
@@ -34,6 +35,7 @@ export class MachineDetailComponent implements OnInit {
     if (idOrGuid) {
       if (/^\d+$/.test(idOrGuid)) {
         this.loadDetail(Number(idOrGuid));
+        this.loadHistory(Number(idOrGuid));
       } else {
         this.loadByGuid(idOrGuid);
       }
@@ -47,6 +49,7 @@ export class MachineDetailComponent implements OnInit {
         const match = machines.find(m => m.qrCodeData === guid);
         if (match) {
           this.loadDetail(match.id);
+          this.loadHistory(match.id);
         } else {
           this.loading = false;
           this.error = 'Machine not found with this QR Code';
@@ -118,6 +121,16 @@ export class MachineDetailComponent implements OnInit {
           this.snackBar.open('Failed to return machine', 'Close', { duration: 3000 });
         }
       });
+    }
+  }
+
+  loadHistory(id: number) {
+    // No longer loading history here inline
+  }
+
+  viewHistory() {
+    if (this.machine) {
+      this.router.navigate(['/public/machines', this.machine.id, 'history']);
     }
   }
 

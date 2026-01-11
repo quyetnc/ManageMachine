@@ -1,4 +1,5 @@
 using ManageMachine.Application.DTOs.Machine;
+using ManageMachine.Application.DTOs.Requests;
 using ManageMachine.Application.Services;
 using ManageMachine.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
@@ -95,6 +96,13 @@ namespace ManageMachine.API.Controllers
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
             await _service.ReturnMachineAsync(id, userId);
             return Ok();
+        }
+
+        [HttpGet("{id}/history")]
+        public async Task<ActionResult<IReadOnlyList<MachineTransferRequestDto>>> GetHistory(int id)
+        {
+            var history = await _service.GetHistoryAsync(id);
+            return Ok(history);
         }
     }
 }
