@@ -37,7 +37,7 @@ namespace ManageMachine.Infrastructure.Persistence.Seeders
             // 2. Update existing users with realistic names if they have generic names like "User 1"
             // Or just ensure we have some users to assign machines to.
             var users = await _context.Users.ToListAsync();
-            var realisticNames = new List<string> { "Alice Johnson", "Bob Smith", "Charlie Davis", "Diana Evans", "Ethan Harris" };
+            var realisticNames = new List<string> { "Administrator", "Đơn Vị 1", "Đơn Vị 2", "Đơn Vị 3", "Đơn Vị 4" };
             
             for (int i = 0; i < users.Count; i++)
             {
@@ -83,7 +83,7 @@ namespace ManageMachine.Infrastructure.Persistence.Seeders
                 machines[i].Name = target.Name;
                 machines[i].MachineTypeId = type.Id;
                 machines[i].Description = $"High performance {target.Name} used for precision work. Maintained regularly.";
-                // machines[i].SerialNumber = $"SN-{random.Next(10000, 99999)}";
+                machines[i].SerialNumber = $"M-{random.Next(10000, 99999)}";
                 
                 // Randomly assign owner if null
                 if (machines[i].UserId == null && users.Any())
@@ -105,7 +105,7 @@ namespace ManageMachine.Infrastructure.Persistence.Seeders
                         Name = target.Name,
                         MachineTypeId = type.Id,
                         Description = $"High performance {target.Name} used for precision work.",
-                        // SerialNumber = $"SN-{random.Next(10000, 99999)}",
+                        SerialNumber = $"M-{random.Next(10000, 99999)}",
                         UserId = users[random.Next(users.Count)].Id,
                         Status = Domain.Enums.MachineStatus.Available,
                         ImageUrl = "" 

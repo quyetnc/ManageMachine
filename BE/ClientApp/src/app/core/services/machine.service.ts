@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { environment } from 'src/environments/environment';
@@ -10,6 +10,7 @@ export interface Machine {
   description: string;
   imageUrl: string;
   qrCodeData: string;
+  serialNumber: string;
   machineTypeId: number;
   machineTypeName: string;
   machineType?: MachineType;
@@ -64,12 +65,20 @@ export class MachineService {
     return this.api.get(`Machines/${id}`);
   }
 
+  getMachineByQr(code: string): Observable<Machine> {
+    return this.http.get<Machine>(`${environment.apiUrl}/Machines/qr/${code}`);
+  }
+
+  getMachineByCode(code: string): Observable<Machine> {
+    return this.http.get<Machine>(`${environment.apiUrl}/Machines/by-code/${code}`);
+  }
+
   getMyMachines(): Observable<Machine[]> {
     return this.api.get<Machine[]>(`Machines/mine`);
   }
 
-  createMachine(data: any): Observable<Machine> {
-    return this.api.post('Machines', data);
+  createMachine(machine: FormData): Observable<Machine> {
+    return this.api.post('Machines', machine);
   }
 
   updateMachine(id: number, data: any): Observable<void> {

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nnL4xAT2QdzAOliMrIu847XTQjUNg/b8udUpQWWUSEM=",
+  "Hash": "LyPWoIRX4PeXzp4Qz9LJ901YYpl46jNszwdbkftmcW0=",
   "Source": "ManageMachine.API",
   "BasePath": "_content/ManageMachine.API",
   "Mode": "Default",
@@ -57,6 +57,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\3f04e070-c572-4bdd-9d86-f6e7f1c5cdaf.png"
+    },
+    {
+      "Identity": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\41a18c09-9ecb-45db-9eac-118d6d283a43.png",
+      "SourceId": "ManageMachine.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\",
+      "BasePath": "_content/ManageMachine.API",
+      "RelativePath": "uploads/41a18c09-9ecb-45db-9eac-118d6d283a43#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "erkm3ufe9e",
+      "Integrity": "ZmL5S/Y++qXqhThP8fWboWtez264m5YJzH0aPve7Ev0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\41a18c09-9ecb-45db-9eac-118d6d283a43.png"
     },
     {
       "Identity": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\4a01c24b-a8a7-4751-aadf-9c448d9c8f0b.png",
@@ -326,6 +347,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-Ox55+sQ+Iq1PaCwl+6fVB3YCh0YFXHVIYguTxb3XpCY="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/41a18c09-9ecb-45db-9eac-118d6d283a43.erkm3ufe9e.png",
+      "AssetFile": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\41a18c09-9ecb-45db-9eac-118d6d283a43.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "451768"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZmL5S/Y++qXqhThP8fWboWtez264m5YJzH0aPve7Ev0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Jan 2026 20:00:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "erkm3ufe9e"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/41a18c09-9ecb-45db-9eac-118d6d283a43.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZmL5S/Y++qXqhThP8fWboWtez264m5YJzH0aPve7Ev0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/41a18c09-9ecb-45db-9eac-118d6d283a43.png",
+      "AssetFile": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\41a18c09-9ecb-45db-9eac-118d6d283a43.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "451768"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZmL5S/Y++qXqhThP8fWboWtez264m5YJzH0aPve7Ev0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Jan 2026 20:00:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZmL5S/Y++qXqhThP8fWboWtez264m5YJzH0aPve7Ev0="
         }
       ]
     },

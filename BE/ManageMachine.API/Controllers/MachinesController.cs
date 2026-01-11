@@ -59,6 +59,14 @@ namespace ManageMachine.API.Controllers
             return Ok(item);
         }
 
+        [HttpGet("by-code/{code}")]
+        public async Task<ActionResult<MachineDto>> GetByCode(string code)
+        {
+            var item = await _service.GetBySerialNumberAsync(code);
+            if (item == null) return NotFound();
+            return Ok(item);
+        }
+
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<MachineDto>> Create(CreateMachineDto dto)

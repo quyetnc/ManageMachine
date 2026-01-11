@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export interface QrData {
   machineName: string;
   qrCodeData: string;
+  serialNumber: string;
 }
 
 @Component({
@@ -18,7 +19,7 @@ export interface QrData {
             <qrcode [qrdata]="item.qrCodeData" [width]="150" [errorCorrectionLevel]="'M'" [elementType]="'img'"></qrcode>
             <div class="info">
                 <span class="machine-name">{{ item.machineName }}</span>
-                <span class="guid-text">{{ item.qrCodeData }}</span>
+                <span class="serial-number">{{ item.serialNumber }}</span>
             </div>
         </div>
       </div>
@@ -58,6 +59,14 @@ export interface QrData {
         font-weight: bold;
         font-size: 0.9rem;
         margin-bottom: 2px;
+    }
+    .serial-number {
+        display: block;
+        font-weight: bold;
+        color: #000;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+        text-transform: uppercase;
     }
     .guid-text {
         font-family: monospace;

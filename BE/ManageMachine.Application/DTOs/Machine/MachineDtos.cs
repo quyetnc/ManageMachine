@@ -59,6 +59,7 @@ namespace ManageMachine.Application.DTOs.Machine
         public string Description { get; set; } = string.Empty;
         public string ImageUrl { get; set; } = string.Empty;
         public string QRCodeData { get; set; } = string.Empty;
+        public string SerialNumber { get; set; } = string.Empty;
         public int MachineTypeId { get; set; }
         public string MachineTypeName { get; set; } = string.Empty;
         public int? UserId { get; set; } // Owner

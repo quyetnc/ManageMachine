@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./machine-list.component.scss']
 })
 export class MachineListComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'image', 'name', 'type', 'ownership', 'parameters', 'description', 'actions'];
+  displayedColumns: string[] = ['select', 'image', 'name', 'code', 'type', 'ownership', 'parameters', 'description', 'actions'];
   dataSource: MatTableDataSource<Machine>;
   selection = new SelectionModel<Machine>(true, []);
 
@@ -81,7 +81,8 @@ export class MachineListComponent implements OnInit {
 
     const qrData = this.selection.selected.map(m => ({
       machineName: m.name,
-      qrCodeData: m.qrCodeData
+      qrCodeData: m.qrCodeData,
+      serialNumber: m.serialNumber
     }));
 
     this.dialog.open(QrBulkViewDialogComponent, {

@@ -11,6 +11,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class UserHomeComponent implements OnInit {
     types: MachineType[] = [];
     loading = false;
+    searchCode = '';
+    isSearching = false;
 
     constructor(private machineService: MachineService, private router: Router, private authService: AuthService) { }
 
@@ -46,5 +48,22 @@ export class UserHomeComponent implements OnInit {
 
     openProfile() {
         this.router.navigate(['/public/profile']);
+    }
+
+    searchMachine() {
+        if (!this.searchCode.trim()) return;
+
+        this.isSearching = true;
+        this.machineService.getMachineByCode(this.searchCode.trim()).subscribe({
+            next: (machine) => {
+                this.isSearching = false;
+                this.router.navigate(['/public/machines', machine.id]);
+            },
+            error: (err) => {
+                this.isSearching = false;
+                // Ideally show a snackbar here, but alert is fine for now or handle in UI
+                alert('Machine code not found!');
+            }
+        });
     }
 }

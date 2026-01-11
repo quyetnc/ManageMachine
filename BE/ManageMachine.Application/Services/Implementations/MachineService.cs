@@ -87,6 +87,14 @@ namespace ManageMachine.Application.Services.Implementations
             return _mapper.Map<MachineDto>(machine);
         }
 
+        public async Task<MachineDto?> GetBySerialNumberAsync(string serialNumber)
+        {
+            // Case insensitive search
+            var machines = await _machineRepository.GetAsync(m => m.SerialNumber.ToLower() == serialNumber.ToLower());
+            var machine = machines.FirstOrDefault();
+            return _mapper.Map<MachineDto>(machine);
+        }
+
         public async Task<IReadOnlyList<MachineDto>> GetByUserIdAsync(int userId)
         {
             var all = await _machineRepository.GetAllWithDetailsAsync();
