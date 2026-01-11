@@ -2,8 +2,8 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #121212;
-    color: #e0e0e0;
+    background-color: #f5f5f5;
+    color: #333;
 }
 
 .app-header {
@@ -11,12 +11,12 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    background-color: #1e1e1e;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     z-index: 10;
 
     .back-btn {
-        color: #e0e0e0;
+        color: #333;
     }
 
     .header-title {
@@ -26,6 +26,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 60%;
+        color: #333;
     }
 
     .header-actions {
@@ -65,18 +66,18 @@
             .day {
                 font-size: 1.2rem;
                 font-weight: bold;
-                color: #fff;
+                color: #333;
             }
 
             .month {
                 font-size: 0.8rem;
                 text-transform: uppercase;
-                color: #aaa;
+                color: #666;
             }
 
             .year {
                 font-size: 0.7rem;
-                color: #666;
+                color: #999;
             }
         }
 
@@ -102,7 +103,7 @@
             align-items: center;
             justify-content: center;
             z-index: 2;
-            box-shadow: 0 0 0 4px #121212; // Ring effect
+            box-shadow: 0 0 0 4px #f5f5f5; // Ring effect matches background
 
             mat-icon {
                 font-size: 18px;
@@ -123,7 +124,7 @@
         .line {
             flex: 1;
             width: 2px;
-            background-color: #333;
+            background-color: #ddd;
             margin-top: -2px;
             margin-bottom: -1rem;
         }
@@ -132,10 +133,11 @@
     .timeline-content {
         flex: 1;
         margin-left: 0.5rem;
-        background-color: #1e1e1e;
+        background-color: #fff;
         border-radius: 12px;
         padding: 1rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        border: 1px solid #eee;
         position: relative;
 
         &::before {
@@ -147,7 +149,9 @@
             height: 0;
             border-top: 8px solid transparent;
             border-bottom: 8px solid transparent;
-            border-right: 8px solid #1e1e1e;
+            border-right: 8px solid #fff;
+            filter: drop-shadow(-2px 0 1px rgba(0, 0, 0, 0.05));
+            /* Slight shadow for arrow */
         }
 
         .content-header {
@@ -157,18 +161,18 @@
                 font-size: 0.75rem;
                 padding: 0.2rem 0.6rem;
                 border-radius: 12px;
-                background-color: #333;
-                color: #ccc;
+                background-color: #eee;
+                color: #666;
                 font-weight: 500;
 
                 &.transfer {
-                    color: #4facfe;
-                    background: rgba(33, 150, 243, 0.15);
+                    color: #1976d2;
+                    background: #e3f2fd;
                 }
 
                 &.return {
-                    color: #ffc107;
-                    background: rgba(255, 152, 0, 0.15);
+                    color: #f57c00;
+                    background: #fff3e0;
                 }
             }
         }
@@ -178,10 +182,11 @@
                 margin: 0 0 0.5rem;
                 font-size: 0.95rem;
                 line-height: 1.4;
+                color: #333;
             }
 
             strong {
-                color: #fff;
+                color: #000;
             }
 
             .tiny-icon {
@@ -195,20 +200,21 @@
 
             .reason {
                 font-style: italic;
-                color: #bbb;
+                color: #666;
                 display: flex;
                 align-items: start;
                 margin-top: 0.8rem;
-                background: #252525;
+                background: #f9f9f9;
                 padding: 0.5rem;
                 border-radius: 6px;
+                border: 1px solid #eee;
 
                 mat-icon {
                     font-size: 16px;
                     width: 16px;
                     height: 16px;
                     margin-right: 4px;
-                    color: #666;
+                    color: #999;
                 }
             }
         }
@@ -226,13 +232,14 @@
     align-items: center;
     justify-content: center;
     padding-top: 4rem;
-    color: #666;
+    color: #888;
 
     mat-icon {
         font-size: 48px;
         width: 48px;
         height: 48px;
         margin-bottom: 1rem;
+        color: #ccc;
     }
 
     p {

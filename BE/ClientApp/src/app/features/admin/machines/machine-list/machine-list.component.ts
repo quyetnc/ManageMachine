@@ -5,7 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { Machine, MachineService } from 'src/app/core/services/machine.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { QrViewDialogComponent } from 'src/app/shared/components/qr-view-dialog.component';
 import { SelectionModel } from '@angular/cdk/collections';
 import { QrBulkViewDialogComponent } from 'src/app/shared/components/qr-bulk-view-dialog.component';
 
@@ -107,14 +106,9 @@ export class MachineListComponent implements OnInit {
     }
   }
 
-  showQr(machine: Machine) {
-    this.dialog.open(QrViewDialogComponent, {
-      width: '400px',
-      data: { qrCodeData: machine.qrCodeData, machineName: machine.name }
-    });
-  }
+
 
   viewHistory(machine: Machine) {
-    this.router.navigate(['/public/machines', machine.id, 'history']);
+    this.router.navigate(['/public/machines', machine.id, 'history'], { queryParams: { returnUrl: '/admin/machines' } });
   }
 }

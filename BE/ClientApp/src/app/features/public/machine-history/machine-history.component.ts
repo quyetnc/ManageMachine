@@ -56,9 +56,11 @@ export class MachineHistoryComponent implements OnInit {
     }
 
     goBack() {
-        // If Admin, maybe go back to admin list? 
-        // For now, default to public detail or simple location back
-        // Let's go to machine detail
-        this.router.navigate(['/public/machines', this.machineId]);
+        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        if (returnUrl) {
+            this.router.navigateByUrl(returnUrl);
+        } else {
+            this.router.navigate(['/public/machines', this.machineId]);
+        }
     }
 }
