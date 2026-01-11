@@ -35,6 +35,17 @@ namespace ManageMachine.Application.Services.Implementations
                         TypeName = g.Key,
                         Count = g.Count()
                     })
+                    .ToList(),
+                MachinesByUser = machines
+                    .Where(m => m.User != null)
+                    .GroupBy(m => m.User.FullName)
+                    .Select(g => new MachinesByUserDto
+                    {
+                         UserOnwerName = g.Key,
+                         MachineCount = g.Count()
+                    })
+                    .OrderByDescending(x => x.MachineCount)
+                    .Take(10) // Top 10 users
                     .ToList()
             };
 
