@@ -37,6 +37,26 @@
                 <td mat-cell *matCellDef="let row"> {{row.machineTypeName}} </td>
             </ng-container>
 
+            <!-- Ownership Column -->
+            <ng-container matColumnDef="ownership">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Ownership & Status </th>
+                <td mat-cell *matCellDef="let row">
+                    <div style="display: flex; flex-direction: column; font-size: 0.85rem;">
+                        <span>Owner: <b>{{row.userFullName || 'Unassigned'}}</b></span>
+
+                        <div *ngIf="row.tenantId" style="margin-top: 4px; color: #d32f2f;">
+                            <mat-icon
+                                style="font-size: 14px; width: 14px; height: 14px; vertical-align: middle;">arrow_forward</mat-icon>
+                            Held by: <b>{{row.tenantName}}</b>
+                        </div>
+
+                        <span style="font-size: 0.75rem; color: #666; margin-top: 2px;">
+                            Status: {{row.status}}
+                        </span>
+                    </div>
+                </td>
+            </ng-container>
+
             <!-- Parameters Column -->
             <ng-container matColumnDef="parameters">
                 <th mat-header-cell *matHeaderCellDef> Parameters </th>

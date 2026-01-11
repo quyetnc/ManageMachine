@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./machine-list.component.scss']
 })
 export class MachineListComponent implements OnInit {
-  displayedColumns: string[] = ['image', 'name', 'type', 'parameters', 'description', 'actions'];
+  displayedColumns: string[] = ['image', 'name', 'type', 'ownership', 'parameters', 'description', 'actions'];
   dataSource: MatTableDataSource<Machine>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

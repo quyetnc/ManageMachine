@@ -28,6 +28,7 @@ namespace ManageMachine.Application.Mappings
 
             CreateMap<Machine, MachineDto>()
                 .ForMember(dest => dest.MachineTypeName, opt => opt.MapFrom(src => src.MachineType.Name))
+                .ForMember(dest => dest.UserFullName, opt => opt.MapFrom(src => src.User != null ? src.User.FullName : null))
                 .ForMember(dest => dest.TenantName, opt => opt.MapFrom(src => src.Tenant != null ? src.Tenant.FullName : null))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
                 .ForMember(dest => dest.PendingTransferRequestId, opt => opt.MapFrom(src => src.TransferRequests

@@ -19,6 +19,7 @@ namespace ManageMachine.Infrastructure.Persistence.Repositories
                     .ThenInclude(mp => mp.Parameter)
                 .Include(m => m.TransferRequests)
                 .Include(m => m.Tenant)
+                .Include(m => m.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
         }
 
@@ -29,6 +30,8 @@ namespace ManageMachine.Infrastructure.Persistence.Repositories
                 .Include(m => m.Parameters)
                     .ThenInclude(mp => mp.Parameter)
                 .Include(m => m.TransferRequests)
+                .Include(m => m.User)
+                .Include(m => m.Tenant)
                 .ToListAsync();
         }
     }
