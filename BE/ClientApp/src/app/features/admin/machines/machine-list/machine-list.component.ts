@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Machine, MachineService } from 'src/app/core/services/machine.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { QrViewDialogComponent } from 'src/app/shared/components/qr-view-dialog.component';
+import { SelectionModel } from '@angular/cdk/collections';
+import { QrBulkViewDialogComponent } from 'src/app/shared/components/qr-bulk-view-dialog.component';
 
 import { Router } from '@angular/router';
 
@@ -15,8 +17,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./machine-list.component.scss']
 })
 export class MachineListComponent implements OnInit {
-  displayedColumns: string[] = ['image', 'name', 'type', 'ownership', 'parameters', 'description', 'actions'];
+  displayedColumns: string[] = ['select', 'image', 'name', 'type', 'ownership', 'parameters', 'description', 'actions'];
   dataSource: MatTableDataSource<Machine>;
+  selection = new SelectionModel<Machine>(true, []);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -57,12 +60,44 @@ export class MachineListComponent implements OnInit {
     }
   }
 
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+      return;
+    }
+
+    this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  printSelectedQr() {
+    if (this.selection.selected.length === 0) return;
+
+    const qrData = this.selection.selected.map(m => ({
+      machineName: m.name,
+      qrCodeData: m.qrCodeData
+    }));
+
+    this.dialog.open(QrBulkViewDialogComponent, {
+      width: '800px',
+      data: qrData
+    });
+  }
+
   deleteMachine(id: number) {
     if (confirm('Are you sure you want to delete this machine?')) {
       this.machineService.deleteMachine(id).subscribe({
         next: () => {
           this.snackBar.open('Machine deleted successfully', 'Close', { duration: 3000 });
           this.loadMachines();
+          this.selection.clear();
         },
         error: (err) => {
           console.error(err);

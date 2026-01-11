@@ -22,6 +22,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { QRCodeModule } from 'angularx-qrcode';
 import { QrViewDialogComponent } from './components/qr-view-dialog.component';
+import { QrBulkViewDialogComponent } from './components/qr-bulk-view-dialog.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const MATERIAL_MODULES = [
   MatButtonModule,
@@ -43,7 +45,8 @@ const MATERIAL_MODULES = [
 
 @NgModule({
   declarations: [
-    QrViewDialogComponent
+    QrViewDialogComponent,
+    QrBulkViewDialogComponent
   ],
   imports: [
     CommonModule,
@@ -67,7 +70,8 @@ const MATERIAL_MODULES = [
     MatDialogModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    QRCodeModule
+    QRCodeModule,
+    MatCheckboxModule
   ],
   exports: [
     CommonModule,
@@ -90,7 +94,8 @@ const MATERIAL_MODULES = [
     MatDialogModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    QRCodeModule
+    QRCodeModule,
+    MatCheckboxModule
   ]
 })
 export class SharedModule { }

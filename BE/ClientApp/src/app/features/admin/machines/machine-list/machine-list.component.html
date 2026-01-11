@@ -1,9 +1,15 @@
 <div class="list-container">
     <div class="header">
         <h2>Machines</h2>
-        <button mat-raised-button color="primary" routerLink="/machines/create">
-            <mat-icon>add</mat-icon> Create New
-        </button>
+        <div class="actions">
+            <button mat-raised-button color="accent" (click)="printSelectedQr()"
+                [disabled]="selection.selected.length === 0" style="margin-right: 10px;">
+                <mat-icon>print</mat-icon> Print Selected ({{selection.selected.length}})
+            </button>
+            <button mat-raised-button color="primary" routerLink="/machines/create">
+                <mat-icon>add</mat-icon> Create New
+            </button>
+        </div>
     </div>
 
     <mat-form-field appearance="outline" class="filter-field">
@@ -13,6 +19,21 @@
 
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
+
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
 
             <!-- Image Column -->
             <ng-container matColumnDef="image">
