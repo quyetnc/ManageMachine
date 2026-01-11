@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/fM0jELyejM0yB60LMGnaMbLlf8pUJ6OsDFyopjt2vQ=",
+  "Hash": "nnL4xAT2QdzAOliMrIu847XTQjUNg/b8udUpQWWUSEM=",
   "Source": "ManageMachine.API",
   "BasePath": "_content/ManageMachine.API",
   "Mode": "Default",
@@ -16,6 +16,27 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\1aea5b4c-cd6b-4889-95ed-6648287892b5.webp",
+      "SourceId": "ManageMachine.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\",
+      "BasePath": "_content/ManageMachine.API",
+      "RelativePath": "uploads/1aea5b4c-cd6b-4889-95ed-6648287892b5#[.{fingerprint}]?.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "wndnpf3eah",
+      "Integrity": "FFbMC1UhpzuH86DRa1pwovnHt9fhoruA+WObhXxRHu4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\1aea5b4c-cd6b-4889-95ed-6648287892b5.webp"
+    },
     {
       "Identity": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\3f04e070-c572-4bdd-9d86-f6e7f1c5cdaf.png",
       "SourceId": "ManageMachine.API",
@@ -78,9 +99,154 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\4dba224c-5291-4360-b810-a8505e648dfa.png"
+    },
+    {
+      "Identity": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\a84326ce-4c04-4fce-af06-d4f8102e109f.jpg",
+      "SourceId": "ManageMachine.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\",
+      "BasePath": "_content/ManageMachine.API",
+      "RelativePath": "uploads/a84326ce-4c04-4fce-af06-d4f8102e109f#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ojpsincmia",
+      "Integrity": "VL6uWEk/z9Ei+icNADz0qd7IZYGjamiwBRJoxoxSxyE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\a84326ce-4c04-4fce-af06-d4f8102e109f.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\e0a158f1-0bd4-4222-9532-b04471954b52.webp",
+      "SourceId": "ManageMachine.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\",
+      "BasePath": "_content/ManageMachine.API",
+      "RelativePath": "uploads/e0a158f1-0bd4-4222-9532-b04471954b52#[.{fingerprint}]?.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "xmupc4xk6h",
+      "Integrity": "p2xnJwDDBbX9HpbWoUNXJvhPWe4VPSdbDrAScg0PfFw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\e0a158f1-0bd4-4222-9532-b04471954b52.webp"
+    },
+    {
+      "Identity": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\eaf9b37c-ed57-446d-a20d-f7c4190a3297.webp",
+      "SourceId": "ManageMachine.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\",
+      "BasePath": "_content/ManageMachine.API",
+      "RelativePath": "uploads/eaf9b37c-ed57-446d-a20d-f7c4190a3297#[.{fingerprint}]?.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "wndnpf3eah",
+      "Integrity": "FFbMC1UhpzuH86DRa1pwovnHt9fhoruA+WObhXxRHu4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\eaf9b37c-ed57-446d-a20d-f7c4190a3297.webp"
     }
   ],
   "Endpoints": [
+    {
+      "Route": "uploads/1aea5b4c-cd6b-4889-95ed-6648287892b5.webp",
+      "AssetFile": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\1aea5b4c-cd6b-4889-95ed-6648287892b5.webp",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "300212"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/webp"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FFbMC1UhpzuH86DRa1pwovnHt9fhoruA+WObhXxRHu4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Jan 2026 18:12:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-FFbMC1UhpzuH86DRa1pwovnHt9fhoruA+WObhXxRHu4="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/1aea5b4c-cd6b-4889-95ed-6648287892b5.wndnpf3eah.webp",
+      "AssetFile": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\1aea5b4c-cd6b-4889-95ed-6648287892b5.webp",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "300212"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/webp"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FFbMC1UhpzuH86DRa1pwovnHt9fhoruA+WObhXxRHu4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Jan 2026 18:12:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wndnpf3eah"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/1aea5b4c-cd6b-4889-95ed-6648287892b5.webp"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-FFbMC1UhpzuH86DRa1pwovnHt9fhoruA+WObhXxRHu4="
+        }
+      ]
+    },
     {
       "Route": "uploads/3f04e070-c572-4bdd-9d86-f6e7f1c5cdaf.bgzv5t6h10.png",
       "AssetFile": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\3f04e070-c572-4bdd-9d86-f6e7f1c5cdaf.png",
@@ -324,6 +490,252 @@
         {
           "Name": "integrity",
           "Value": "sha256-7WvLiOVbXAUOmkp6Rgk06mzlh3uGluKF8JX493SbZmE="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/a84326ce-4c04-4fce-af06-d4f8102e109f.jpg",
+      "AssetFile": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\a84326ce-4c04-4fce-af06-d4f8102e109f.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "274273"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"VL6uWEk/z9Ei+icNADz0qd7IZYGjamiwBRJoxoxSxyE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Jan 2026 18:12:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-VL6uWEk/z9Ei+icNADz0qd7IZYGjamiwBRJoxoxSxyE="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/a84326ce-4c04-4fce-af06-d4f8102e109f.ojpsincmia.jpg",
+      "AssetFile": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\a84326ce-4c04-4fce-af06-d4f8102e109f.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "274273"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"VL6uWEk/z9Ei+icNADz0qd7IZYGjamiwBRJoxoxSxyE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Jan 2026 18:12:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ojpsincmia"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/a84326ce-4c04-4fce-af06-d4f8102e109f.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-VL6uWEk/z9Ei+icNADz0qd7IZYGjamiwBRJoxoxSxyE="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e0a158f1-0bd4-4222-9532-b04471954b52.webp",
+      "AssetFile": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\e0a158f1-0bd4-4222-9532-b04471954b52.webp",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "400904"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/webp"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"p2xnJwDDBbX9HpbWoUNXJvhPWe4VPSdbDrAScg0PfFw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Jan 2026 18:13:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-p2xnJwDDBbX9HpbWoUNXJvhPWe4VPSdbDrAScg0PfFw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e0a158f1-0bd4-4222-9532-b04471954b52.xmupc4xk6h.webp",
+      "AssetFile": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\e0a158f1-0bd4-4222-9532-b04471954b52.webp",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "400904"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/webp"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"p2xnJwDDBbX9HpbWoUNXJvhPWe4VPSdbDrAScg0PfFw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Jan 2026 18:13:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xmupc4xk6h"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/e0a158f1-0bd4-4222-9532-b04471954b52.webp"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-p2xnJwDDBbX9HpbWoUNXJvhPWe4VPSdbDrAScg0PfFw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/eaf9b37c-ed57-446d-a20d-f7c4190a3297.webp",
+      "AssetFile": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\eaf9b37c-ed57-446d-a20d-f7c4190a3297.webp",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "300212"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/webp"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FFbMC1UhpzuH86DRa1pwovnHt9fhoruA+WObhXxRHu4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Jan 2026 18:12:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-FFbMC1UhpzuH86DRa1pwovnHt9fhoruA+WObhXxRHu4="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/eaf9b37c-ed57-446d-a20d-f7c4190a3297.wndnpf3eah.webp",
+      "AssetFile": "C:\\Users\\quyet\\OneDrive\\Desktop\\ManageMachine\\BE\\ManageMachine.API\\wwwroot\\uploads\\eaf9b37c-ed57-446d-a20d-f7c4190a3297.webp",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "300212"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/webp"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FFbMC1UhpzuH86DRa1pwovnHt9fhoruA+WObhXxRHu4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 Jan 2026 18:12:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wndnpf3eah"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/eaf9b37c-ed57-446d-a20d-f7c4190a3297.webp"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-FFbMC1UhpzuH86DRa1pwovnHt9fhoruA+WObhXxRHu4="
         }
       ]
     }

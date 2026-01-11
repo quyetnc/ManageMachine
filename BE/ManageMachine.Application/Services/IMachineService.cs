@@ -16,5 +16,7 @@ namespace ManageMachine.Application.Services
 
         // Parameter logic can be here or separate if complex
         Task AddParameterToMachineAsync(int machineId, CreateMachineParameterDto paramDto);
+
+        Task ReturnMachineAsync(int machineId, int userId);
     }
 }

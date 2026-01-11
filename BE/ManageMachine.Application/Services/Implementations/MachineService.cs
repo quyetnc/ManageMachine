@@ -85,16 +85,23 @@ namespace ManageMachine.Application.Services.Implementations
 
         public async Task<IReadOnlyList<MachineDto>> GetByUserIdAsync(int userId)
         {
-            // Assuming Repository has GetAsync supporting expression, but need Includes (MachineType, etc.)
-            // GetAsync usually returns IReadOnlyList directly but might not Include.
-            // Best to use GetAllWithDetailsAsync and filter in memory if volume low, OR add specialized method to Repo.
-            // For now, let's try _machineRepository.GetAsync(m => m.UserId == userId) provided it maps correctly.
-            // Actually, if we want MachineType name, we need Includes.
-            // Let's assume GetAllWithDetailsAsync returns Queryable or List. It returns List.
-            // Optimization: Add GetByUserIdWithDetailsAsync to Repo later. For now:
             var all = await _machineRepository.GetAllWithDetailsAsync();
-            var mine = all.Where(m => m.UserId == userId).ToList();
+            // User sees machines they OWN OR machines they are RENTING (TenantId) using
+            var mine = all.Where(m => m.UserId == userId || m.TenantId == userId).ToList();
             return _mapper.Map<IReadOnlyList<MachineDto>>(mine);
+        }
+
+        public async Task ReturnMachineAsync(int machineId, int userId)
+        {
+            var machine = await _machineRepository.GetByIdAsync(machineId);
+            if (machine == null) throw new Exception("Machine not found");
+
+            if (machine.TenantId != userId) throw new Exception("You can only return machines you are currently holding.");
+
+            machine.TenantId = null;
+            machine.Status = Domain.Enums.MachineStatus.Available;
+
+            await _machineRepository.UpdateAsync(machine);
         }
 
         public async Task UpdateAsync(int id, CreateMachineDto updateDto)

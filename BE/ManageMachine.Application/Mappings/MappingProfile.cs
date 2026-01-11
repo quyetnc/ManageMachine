@@ -27,7 +27,13 @@ namespace ManageMachine.Application.Mappings
             CreateMap<CreateMachineParameterDto, MachineParameter>();
 
             CreateMap<Machine, MachineDto>()
-                .ForMember(dest => dest.MachineTypeName, opt => opt.MapFrom(src => src.MachineType.Name));
+                .ForMember(dest => dest.MachineTypeName, opt => opt.MapFrom(src => src.MachineType.Name))
+                .ForMember(dest => dest.TenantName, opt => opt.MapFrom(src => src.Tenant != null ? src.Tenant.FullName : null))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
+                .ForMember(dest => dest.PendingTransferRequestId, opt => opt.MapFrom(src => src.TransferRequests
+                    .Where(r => r.Status == ManageMachine.Domain.Enums.RequestStatus.Pending)
+                    .Select(r => (int?)r.Id)
+                    .FirstOrDefault()));
             CreateMap<CreateMachineDto, Machine>();
         }
     }

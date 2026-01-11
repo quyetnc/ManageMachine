@@ -48,6 +48,40 @@
             </div>
         </div>
 
+        <!-- Action Buttons -->
+        <div class="actions-section" *ngIf="machine && currentUserId">
+            <ng-container
+                *ngIf="(machine.userId === currentUserId && !machine.tenantId) || (machine.tenantId === currentUserId)">
+                <button mat-flat-button color="primary" class="action-btn" *ngIf="!machine.pendingTransferRequestId"
+                    (click)="openTransferDialog()">
+                    <mat-icon>send</mat-icon> Transfer Machine
+                </button>
+                <div *ngIf="machine.pendingTransferRequestId" class="pending-section">
+                    <span class="status-msg warning">
+                        <mat-icon>pending</mat-icon> Transfer Request Pending
+                    </span>
+                    <button mat-stroked-button color="warn" (click)="cancelRequest()">
+                        Cancel Request
+                    </button>
+                </div>
+            </ng-container>
+
+            <button mat-flat-button color="warn" class="action-btn" *ngIf="machine.tenantId === currentUserId"
+                (click)="returnMachine()">
+                <mat-icon>keyboard_return</mat-icon> Return Machine
+            </button>
+
+            <div *ngIf="machine.userId === currentUserId && machine.tenantId" class="status-msg info">
+                <mat-icon>info</mat-icon>
+                <span>Lent to: <strong>{{ machine.tenantName }}</strong> ({{ machine.status }})</span>
+            </div>
+
+            <div *ngIf="machine.tenantId === currentUserId" class="status-msg info">
+                <mat-icon>info</mat-icon>
+                <span>Borrowed from: <strong>{{ machine.userFullName }}</strong> ({{ machine.status }})</span>
+            </div>
+        </div>
+
         <div class="bottom-spacer"></div>
     </div>
 </div>

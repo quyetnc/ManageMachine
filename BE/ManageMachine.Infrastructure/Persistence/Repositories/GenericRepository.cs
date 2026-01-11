@@ -45,9 +45,34 @@ namespace ManageMachine.Infrastructure.Persistence.Repositories
              return await _dbSet.ToListAsync();
         }
 
-        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate)
+        public async Task<IReadOnlyList<T>> GetAsync(
+            Expression<Func<T, bool>>? predicate = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
+            string? includeProperties = null)
         {
-            return await _dbSet.Where(predicate).ToListAsync();
+            IQueryable<T> query = _dbSet;
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+
+            if (includeProperties != null)
+            {
+                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
+
+            if (orderBy != null)
+            {
+                return await orderBy(query).ToListAsync();
+            }
+            else
+            {
+                return await query.ToListAsync();
+            }
         }
 
         public async Task<T?> GetByIdAsync(int id)

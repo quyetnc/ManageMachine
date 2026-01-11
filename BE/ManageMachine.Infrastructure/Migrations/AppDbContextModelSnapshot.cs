@@ -52,6 +52,12 @@ namespace ManageMachine.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TenantId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -61,6 +67,8 @@ namespace ManageMachine.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("MachineTypeId");
+
+                    b.HasIndex("TenantId");
 
                     b.HasIndex("UserId");
 
@@ -96,6 +104,53 @@ namespace ManageMachine.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("MachineParameters");
+                });
+
+            modelBuilder.Entity("ManageMachine.Domain.Entities.MachineTransferRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FromUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MachineId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RequestType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ResolvedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ToUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromUserId");
+
+                    b.HasIndex("MachineId");
+
+                    b.HasIndex("ToUserId");
+
+                    b.ToTable("MachineTransferRequests");
                 });
 
             modelBuilder.Entity("ManageMachine.Domain.Entities.MachineType", b =>
@@ -202,11 +257,19 @@ namespace ManageMachine.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ManageMachine.Domain.Entities.User", "Tenant")
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("ManageMachine.Domain.Entities.User", "User")
                         .WithMany("Machines")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("MachineType");
+
+                    b.Navigation("Tenant");
 
                     b.Navigation("User");
                 });
@@ -228,6 +291,33 @@ namespace ManageMachine.Infrastructure.Migrations
                     b.Navigation("Machine");
 
                     b.Navigation("Parameter");
+                });
+
+            modelBuilder.Entity("ManageMachine.Domain.Entities.MachineTransferRequest", b =>
+                {
+                    b.HasOne("ManageMachine.Domain.Entities.User", "FromUser")
+                        .WithMany()
+                        .HasForeignKey("FromUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ManageMachine.Domain.Entities.Machine", "Machine")
+                        .WithMany()
+                        .HasForeignKey("MachineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ManageMachine.Domain.Entities.User", "ToUser")
+                        .WithMany()
+                        .HasForeignKey("ToUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("FromUser");
+
+                    b.Navigation("Machine");
+
+                    b.Navigation("ToUser");
                 });
 
             modelBuilder.Entity("ManageMachine.Domain.Entities.Machine", b =>

@@ -5,6 +5,7 @@ import { MachineDetailComponent } from './machine-detail/machine-detail.componen
 import { UserHomeComponent } from './user-home/user-home.component';
 import { UserMachineListComponent } from './user-machine-list/user-machine-list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserRequestListComponent } from './user-request-list/user-request-list.component';
 
 const routes: Routes = [
   { path: '', component: UserHomeComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'types/:id', component: UserMachineListComponent },
   { path: 'my-machines', component: UserMachineListComponent },
   { path: 'machines/:id', component: MachineDetailComponent }, // Supports both ID and GUID
+  { path: 'requests', component: UserRequestListComponent },
   { path: 'scan', component: ScanComponent }
 ];
 

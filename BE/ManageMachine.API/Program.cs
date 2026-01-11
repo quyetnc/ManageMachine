@@ -29,7 +29,9 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IUserService, UserService>(); // New Service
+builder.Services.AddScoped<IUserService, UserService>(); 
+builder.Services.AddScoped<IRequestService, RequestService>();
+builder.Services.AddScoped<IMachineService, MachineService>(); // Ensuring explicit if needed or rely on AddApplication
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(Program));

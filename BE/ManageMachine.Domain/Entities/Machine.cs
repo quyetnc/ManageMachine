@@ -1,4 +1,5 @@
 using ManageMachine.Domain.Common;
+using ManageMachine.Domain.Enums;
 using System.Collections.Generic;
 
 namespace ManageMachine.Domain.Entities
@@ -14,8 +15,14 @@ namespace ManageMachine.Domain.Entities
         public MachineType MachineType { get; set; } = null!;
 
         public int? UserId { get; set; }
-        public User? User { get; set; }
+        public User? User { get; set; } // Owner
+
+        // Lending System
+        public int? TenantId { get; set; }
+        public User? Tenant { get; set; } // Current Holder
+        public MachineStatus Status { get; set; } = MachineStatus.Available;
 
         public ICollection<MachineParameter> Parameters { get; set; } = new List<MachineParameter>();
+        public ICollection<MachineTransferRequest> TransferRequests { get; set; } = new List<MachineTransferRequest>();
     }
 }

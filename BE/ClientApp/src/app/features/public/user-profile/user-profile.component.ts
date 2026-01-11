@@ -23,4 +23,8 @@ export class UserProfileComponent implements OnInit {
     goBack() {
         this.router.navigate(['/public']);
     }
+
+    openRequests() {
+        this.router.navigate(['/public/requests']);
+    }
 }

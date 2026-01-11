@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { CreateUserDto, ResetPasswordDto, UpdateUserDto, User } from '../models/user.model';
+export { User };
 
 @Injectable({
   providedIn: 'root'

@@ -63,6 +63,10 @@ namespace ManageMachine.Application.DTOs.Machine
         public string MachineTypeName { get; set; } = string.Empty;
         public int? UserId { get; set; } // Owner
         public string? UserFullName { get; set; } 
+        public int? TenantId { get; set; }
+        public string? TenantName { get; set; }
+        public string Status { get; set; } = string.Empty;
+        public int? PendingTransferRequestId { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public List<MachineParameterDto> Parameters { get; set; } = new List<MachineParameterDto>();

@@ -12,6 +12,38 @@ $text-secondary: #64748b;
     font-family: 'Inter', system-ui, sans-serif;
 }
 
+// Add these styles or ensure they exist
+.pending-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+
+    .status-msg.warning {
+        color: #ff9800; // Orange for pending
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: 500;
+    }
+
+    .status-msg.info {
+        color: #2196f3; // Blue for info
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: 500;
+        margin-top: 10px;
+        background: #e3f2fd;
+        padding: 8px 12px;
+        border-radius: 8px;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 .mobile-app-container {
     height: 100%;
     display: flex;
@@ -167,4 +199,30 @@ $text-secondary: #64748b;
     justify-content: center;
     gap: 16px;
     color: $text-secondary;
+}
+
+.actions-section {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .action-btn {
+        width: 100%;
+        padding: 8px;
+        border-radius: 12px;
+        font-size: 16px;
+    }
+
+    .status-msg {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: $text-secondary;
+        justify-content: center;
+        font-size: 14px;
+        padding: 12px;
+        background: #fff;
+        border-radius: 12px;
+    }
 }

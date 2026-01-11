@@ -1,0 +1,37 @@
+.list-container {
+    padding: 24px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    h2 {
+        margin: 0;
+        font-size: 24px;
+        color: #1a1a1a;
+    }
+}
+
+table {
+    width: 100%;
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+
+    &.borrow {
+        background-color: #e0f2fe;
+        color: #0284c7;
+    }
+
+    &.repair {
+        background-color: #fee2e2;
+        color: #dc2626;
+    }
+}

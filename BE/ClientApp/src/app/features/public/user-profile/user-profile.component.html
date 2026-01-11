@@ -42,32 +42,38 @@
             </div>
         </div>
 
-        <div class="actions-section">
-            <button mat-stroked-button color="warn" class="full-width-btn" (click)="logout()">
-                Log Out
-            </button>
-        </div>
-
-        <div class="bottom-spacer"></div>
     </div>
 
-    <!-- Bottom Navigation Bar -->
-    <div class="bottom-nav-bar">
-        <div class="nav-item" (click)="goBack()">
-            <mat-icon>home</mat-icon>
-            <span>Home</span>
-        </div>
+    <div class="actions-section">
+        <button mat-flat-button class="full-width-btn" (click)="openRequests()"
+            style="margin-bottom: 12px; background-color: #fff; color: #333; border: 1px solid #ddd;">
+            <mat-icon style="margin-right: 8px;">history</mat-icon> My Requests
+        </button>
 
-        <!-- Placeholder for symmetry -->
-        <div class="scan-button-wrapper">
-            <button class="scan-fab" disabled>
-                <mat-icon>qr_code_scanner</mat-icon>
-            </button>
-        </div>
+        <button mat-stroked-button color="warn" class="full-width-btn" (click)="logout()">
+            Log Out
+        </button>
+    </div>
 
-        <div class="nav-item active">
-            <mat-icon>person</mat-icon>
-            <span>Profile</span>
-        </div>
+    <div class="bottom-spacer"></div>
+</div>
+
+<!-- Bottom Navigation Bar -->
+<div class="bottom-nav-bar">
+    <div class="nav-item" (click)="goBack()">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+    </div>
+
+    <!-- Placeholder for symmetry -->
+    <div class="scan-button-wrapper">
+        <button class="scan-fab" disabled>
+            <mat-icon>qr_code_scanner</mat-icon>
+        </button>
+    </div>
+
+    <div class="nav-item active">
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
     </div>
 </div>

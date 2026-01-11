@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Security.Claims;
+
 
 namespace ManageMachine.API.Controllers
 {
@@ -85,6 +87,13 @@ namespace ManageMachine.API.Controllers
         public async Task<ActionResult> AddParameter(int id, CreateMachineParameterDto paramDto)
         {
             await _service.AddParameterToMachineAsync(id, paramDto);
+            return Ok();
+        }
+        [HttpPost("{id}/return")]
+        public async Task<IActionResult> ReturnMachine(int id)
+        {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            await _service.ReturnMachineAsync(id, userId);
             return Ok();
         }
     }

@@ -14,6 +14,7 @@ namespace ManageMachine.Infrastructure.Persistence
         public DbSet<MachineType> MachineTypes { get; set; }
         public DbSet<Parameter> Parameters { get; set; }
         public DbSet<MachineParameter> MachineParameters { get; set; }
+        public DbSet<MachineTransferRequest> MachineTransferRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +30,38 @@ namespace ManageMachine.Infrastructure.Persistence
             modelBuilder.Entity<MachineParameter>()
                 .HasIndex(mp => new { mp.MachineId, mp.ParameterId })
                 .IsUnique();
+
+            modelBuilder.Entity<Machine>()
+                .HasOne(m => m.User)
+                .WithMany(u => u.Machines)
+                .HasForeignKey(m => m.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Machine Tenant Relationship
+            modelBuilder.Entity<Machine>()
+                .HasOne(m => m.Tenant)
+                .WithMany() // Assuming User doesn't need a collection of 'BorrowedMachines' for now
+                .HasForeignKey(m => m.TenantId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            // Transfer Request Relationships
+            modelBuilder.Entity<MachineTransferRequest>()
+                .HasOne(r => r.FromUser)
+                .WithMany()
+                .HasForeignKey(r => r.FromUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<MachineTransferRequest>()
+                .HasOne(r => r.ToUser)
+                .WithMany()
+                .HasForeignKey(r => r.ToUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<MachineTransferRequest>()
+                .HasOne(r => r.Machine)
+                .WithMany(m => m.TransferRequests)
+                .HasForeignKey(r => r.MachineId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<MachineParameter>()
                 .HasOne(mp => mp.Machine)

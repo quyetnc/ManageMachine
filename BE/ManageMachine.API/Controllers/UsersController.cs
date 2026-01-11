@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ManageMachine.API.Controllers
 {
-    [Authorize(Roles = "Admin")] // Ensure UserRole enum strings match "Admin"
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
@@ -27,6 +27,7 @@ namespace ManageMachine.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([FromBody] CreateUserDto createUserDto)
         {
             try
@@ -41,6 +42,7 @@ namespace ManageMachine.API.Controllers
         }
 
         [HttpPost("{id}/reset-password")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ResetPassword(int id, [FromBody] ResetPasswordDto resetPasswordDto)
         {
             try
@@ -55,6 +57,7 @@ namespace ManageMachine.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateUserDto updateUserDto)
         {
             try
@@ -69,6 +72,7 @@ namespace ManageMachine.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             try

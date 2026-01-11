@@ -10,14 +10,19 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { UserMachineListComponent } from './user-machine-list/user-machine-list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
+import { TransferDialogComponent } from './machine-detail/transfer-dialog.component';
+import { UserRequestListComponent } from './user-request-list/user-request-list.component';
+
 @NgModule({
   declarations: [
     ScanComponent,
     MachineDetailComponent,
-    UserHomeComponent,
+    TransferDialogComponent,
     UserHomeComponent,
     UserMachineListComponent,
-    UserProfileComponent
+    UserMachineListComponent,
+    UserProfileComponent,
+    UserRequestListComponent
   ],
   imports: [
     CommonModule,

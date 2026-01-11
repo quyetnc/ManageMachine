@@ -15,6 +15,11 @@ export interface Machine {
   machineType?: MachineType;
   parameters: MachineParameter[];
   userId?: number;
+  userFullName?: string;
+  tenantId?: number;
+  tenantName?: string;
+  status?: string;
+  pendingTransferRequestId?: number;
 }
 
 export interface MachineParameter {
@@ -119,8 +124,11 @@ export class MachineService {
   uploadImage(file: File): Observable<{ url: string }> {
     const formData = new FormData();
     formData.append('file', file);
-    // Using HttpClient directly as per instruction, assuming environment.apiUrl is available
     return this.http.post<{ url: string }>(`${environment.apiUrl}/upload`, formData);
+  }
+
+  returnMachine(id: number): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/Machines/${id}/return`, {});
   }
 
   updateParameter(id: number, data: any): Observable<void> {
