@@ -9,7 +9,6 @@ namespace ManageMachine.Domain.Entities
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string ImageUrl { get; set; } = string.Empty; // For mobile app display
-        public string QRCodeData { get; set; } = string.Empty; // Store unique string for QR code generation
         public string SerialNumber { get; set; } = string.Empty; // Human-readable unique code (e.g. M-12345)
 
         public int MachineTypeId { get; set; }

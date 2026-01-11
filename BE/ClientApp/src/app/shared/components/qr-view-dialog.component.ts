@@ -3,19 +3,19 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
-    selector: 'app-qr-view-dialog',
-    template: `
+  selector: 'app-qr-view-dialog',
+  template: `
     <h2 mat-dialog-title>QR Code: {{ data.machineName }}</h2>
     <mat-dialog-content class="qr-content">
-      <qrcode [qrdata]="data.qrCodeData" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
-      <div class="guid-text">{{ data.qrCodeData }}</div>
+      <qrcode [qrdata]="data.serialNumber" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+      <div class="guid-text">{{ data.serialNumber }}</div>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
       <button mat-button (click)="print()">Print</button>
       <button mat-button mat-dialog-close>Close</button>
     </mat-dialog-actions>
   `,
-    styles: [`
+  styles: [`
     .qr-content {
       display: flex;
       flex-direction: column;
@@ -44,12 +44,12 @@ import { SafeUrl } from '@angular/platform-browser';
   `]
 })
 export class QrViewDialogComponent {
-    constructor(
-        public dialogRef: MatDialogRef<QrViewDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: { qrCodeData: string, machineName: string }
-    ) { }
+  constructor(
+    public dialogRef: MatDialogRef<QrViewDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { serialNumber: string, machineName: string }
+  ) { }
 
-    print() {
-        window.print();
-    }
+  print() {
+    window.print();
+  }
 }

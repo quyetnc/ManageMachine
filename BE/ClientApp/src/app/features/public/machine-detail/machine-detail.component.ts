@@ -44,20 +44,20 @@ export class MachineDetailComponent implements OnInit {
 
   // ... (Keep existing methods loadByGuid and loadDetail)
   loadByGuid(guid: string) {
-    this.machineService.getMachines().subscribe({
-      next: (machines) => {
-        const match = machines.find(m => m.qrCodeData === guid);
-        if (match) {
-          this.loadDetail(match.id);
-          this.loadHistory(match.id);
+    this.machineService.getMachineByCode(guid).subscribe({
+      next: (machine) => {
+        if (machine) {
+          this.loadDetail(machine.id);
+          this.loadHistory(machine.id);
         } else {
+          // Should verify if API returns 404 error or null. Usually 404 goes to error block.
           this.loading = false;
-          this.error = 'Machine not found with this QR Code';
+          this.error = 'Machine not found with this Code';
         }
       },
       error: (err) => {
         this.loading = false;
-        this.error = 'Failed to scan database';
+        this.error = 'Machine not found or error loading';
       }
     });
   }

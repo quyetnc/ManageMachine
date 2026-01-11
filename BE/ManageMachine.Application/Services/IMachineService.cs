@@ -12,7 +12,6 @@ namespace ManageMachine.Application.Services
         Task<MachineDto> CreateAsync(CreateMachineDto createDto);
         Task UpdateAsync(int id, CreateMachineDto updateDto); // Reusing CreateDto or update DTO, usually create fits update
         Task DeleteAsync(int id);
-        Task<MachineDto?> GetByQRCodeAsync(string qrCodeData);
         Task<MachineDto?> GetBySerialNumberAsync(string serialNumber);
         Task<IReadOnlyList<MachineDto>> GetByUserIdAsync(int userId);
 

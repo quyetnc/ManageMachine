@@ -35,28 +35,48 @@ namespace ManageMachine.Application.Services.Implementations
         public async Task<MachineDto> CreateAsync(CreateMachineDto createDto)
         {
             var machine = _mapper.Map<Machine>(createDto);
-            machine.QRCodeData = Guid.NewGuid().ToString(); // Simple QR code generation
             
-            // Parameters are already mapped by AutoMapper into 'machine.Parameters'
-            // and will be saved automatically by the repository due to cascade persistence.
+            // Generate incremental serial number
+            string nextCode = await GenerateNextSerialNumberAsync();
+            machine.SerialNumber = nextCode;
+
+            // Use SerialNumber for QR Data as well (or keep GUID if distinct uniqueness is needed globally, but Serial is unique per tenant usually)
+            // User wanted to replace GUID, so let's use the Code.
+            // machine.QRCodeData = nextCode; // Removed as per refactor
             
             await _machineRepository.AddAsync(machine);
 
-            // // Add parameters if any
-            // if (createDto.Parameters != null && createDto.Parameters.Any())
-            // {
-            //     foreach (var p in createDto.Parameters)
-            //     {
-            //         var machineParam = new MachineParameter
-            //         {
-            //             MachineId = machine.Id,
-            //             ParameterId = p.ParameterId,
-            //             Value = p.Value
-            //         };
-            //         await _machineParameterRepository.AddAsync(machineParam);
-            //     }
-            // }
             return await GetByIdAsync(machine.Id) ?? throw new Exception("Failed to retrieve created machine");
+        }
+
+        private async Task<string> GenerateNextSerialNumberAsync()
+        {
+            // Get the machine with the "largest" SerialNumber
+            // Assuming format M-XXXXX where X is digit.
+            // String comparison works for fixed length padding. 
+            // If length varies, we might need more complex logic or just rely on the fact we always pad to 5.
+            
+            var lastMachines = await _machineRepository.GetAsync(
+                orderBy: q => q.OrderByDescending(m => m.SerialNumber)
+            );
+            var lastMachine = lastMachines.FirstOrDefault();
+
+            if (lastMachine == null || string.IsNullOrEmpty(lastMachine.SerialNumber))
+            {
+                return "M-00001";
+            }
+
+            // Extract numeric part
+            // format M-00001
+            var parts = lastMachine.SerialNumber.Split('-');
+            if (parts.Length < 2) return "M-00001"; // Fallback
+
+            if (int.TryParse(parts[1], out int currentMax))
+            {
+                return $"M-{currentMax + 1:D5}";
+            }
+
+            return $"M-{Guid.NewGuid().ToString().Substring(0, 5)}"; // Fallback if parsing fails
         }
 
         public async Task DeleteAsync(int id)
@@ -80,12 +100,6 @@ namespace ManageMachine.Application.Services.Implementations
             return _mapper.Map<MachineDto>(machine);
         }
 
-        public async Task<MachineDto?> GetByQRCodeAsync(string qrCodeData)
-        {
-            var machines = await _machineRepository.GetAsync(m => m.QRCodeData == qrCodeData);
-            var machine = machines.FirstOrDefault();
-            return _mapper.Map<MachineDto>(machine);
-        }
 
         public async Task<MachineDto?> GetBySerialNumberAsync(string serialNumber)
         {

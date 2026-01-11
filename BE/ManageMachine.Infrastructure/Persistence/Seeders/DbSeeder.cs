@@ -18,21 +18,24 @@ namespace ManageMachine.Infrastructure.Persistence.Seeders
 
         public async Task SeedAsync()
         {
-            // 1. Seed Machine Types
-            if (!await _context.MachineTypes.AnyAsync())
+            // 1. Seed Machine Types (Upsert)
+            var types = new List<MachineType>
             {
-                var types = new List<MachineType>
+                new MachineType { Name = "Vũ khí bộ binh", Description = "Súng trường, súng ngắn, đạn dược" },
+                new MachineType { Name = "Phương tiện chiến đấu", Description = "Xe tăng, xe bọc thép, xe vận tải" },
+                new MachineType { Name = "Thiết bị thông tin", Description = "Máy bộ đàm, điện thoại chiến trường" },
+                new MachineType { Name = "Khí tài quang học", Description = "Ống nhòm, kính ngắm, thiết bị đo xa" },
+                new MachineType { Name = "Quân trang", Description = "Quần áo, mũ, giày, ba lô" }
+            };
+
+            foreach (var type in types)
+            {
+                if (!await _context.MachineTypes.AnyAsync(t => t.Name == type.Name))
                 {
-                    new MachineType { Name = "CNC Lathe", Description = "Computer Numerical Control Lathe" },
-                    new MachineType { Name = "Milling Machine", Description = "Vertical Milling Machine" },
-                    new MachineType { Name = "3D Printer", Description = "Fused Deposition Modeling Printer" },
-                    new MachineType { Name = "Laser Cutter", Description = "CO2 Laser Cutter and Engraver" },
-                    new MachineType { Name = "Drill Press", Description = "Benchtop Drill Press" },
-                    new MachineType { Name = "Welding Station", Description = "MIG/TIG Welding Setup" }
-                };
-                await _context.MachineTypes.AddRangeAsync(types);
-                await _context.SaveChangesAsync();
+                    _context.MachineTypes.Add(type);
+                }
             }
+            await _context.SaveChangesAsync();
 
             // 2. Update existing users with realistic names if they have generic names like "User 1"
             // Or just ensure we have some users to assign machines to.
@@ -62,19 +65,22 @@ namespace ManageMachine.Infrastructure.Persistence.Seeders
 
             var realisticMachines = new List<(string Name, string Type)>
             {
-                ("Haas VF-2", "Milling Machine"),
-                ("Prusa i3 MK3S+", "3D Printer"),
-                ("Mazak Quick Turn 250", "CNC Lathe"),
-                ("Glowforge Pro", "Laser Cutter"),
-                ("Bridgeport Series I", "Milling Machine"),
-                ("Ultimaker S5", "3D Printer"),
-                ("Lincoln Electric Power MIG", "Welding Station"),
-                ("Jet JDP-17", "Drill Press"),
-                ("Formlabs Form 3+", "3D Printer"),
-                ("Tormach PCNC 440", "Milling Machine")
+                ("Súng trường tấn công AK-47", "Vũ khí bộ binh"),
+                ("Xe tăng chiến đấu chủ lực T-90S", "Phương tiện chiến đấu"),
+                ("Máy bộ đàm chiến thuật PRC-25", "Thiết bị thông tin"),
+                ("Ống nhòm quân sự 8x30", "Khí tài quang học"),
+                ("Súng ngắn K-54", "Vũ khí bộ binh"),
+                ("Xe bọc thép BTR-60PB", "Phương tiện chiến đấu"),
+                ("Mũ chống đạn A2", "Quân trang"),
+                ("Giày quân nhu cấp tá", "Quân trang"),
+                ("Kính ngắm quang học PSO-1", "Khí tài quang học"),
+                ("Đài vô tuyến điện sóng ngắn VRH-811", "Thiết bị thông tin")
             };
 
             // Strategy: Update existing machines first
+            // Also enforce sequential serial numbers
+            int currentSerial = 1;
+
             for (int i = 0; i < machines.Count; i++)
             {
                 var target = realisticMachines[i % realisticMachines.Count];
@@ -82,8 +88,12 @@ namespace ManageMachine.Infrastructure.Persistence.Seeders
                 
                 machines[i].Name = target.Name;
                 machines[i].MachineTypeId = type.Id;
-                machines[i].Description = $"High performance {target.Name} used for precision work. Maintained regularly.";
-                machines[i].SerialNumber = $"M-{random.Next(10000, 99999)}";
+                machines[i].Description = $"{target.Name} - Trang bị tiêu chuẩn. Đã qua kiểm tra kỹ thuật. Sẵn sàng chiến đấu/làm nhiệm vụ.";
+                
+                // Set Sequential Serial Number
+                string code = $"M-{currentSerial:D5}";
+                machines[i].SerialNumber = code;
+                currentSerial++;
                 
                 // Randomly assign owner if null
                 if (machines[i].UserId == null && users.Any())
@@ -100,12 +110,15 @@ namespace ManageMachine.Infrastructure.Persistence.Seeders
                     var target = realisticMachines[i % realisticMachines.Count];
                     var type = machineTypes.FirstOrDefault(t => t.Name == target.Type) ?? machineTypes.First();
                     
+                    var code = $"M-{currentSerial:D5}";
+                    currentSerial++;
+
                     var newMachine = new Machine
                     {
                         Name = target.Name,
                         MachineTypeId = type.Id,
-                        Description = $"High performance {target.Name} used for precision work.",
-                        SerialNumber = $"M-{random.Next(10000, 99999)}",
+                        Description = $"{target.Name} - Trang bị mới nhập kho. Tình trạng kỹ thuật tốt.",
+                        SerialNumber = code,
                         UserId = users[random.Next(users.Count)].Id,
                         Status = Domain.Enums.MachineStatus.Available,
                         ImageUrl = "" 

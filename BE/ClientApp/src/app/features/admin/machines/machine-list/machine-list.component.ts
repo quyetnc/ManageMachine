@@ -123,7 +123,7 @@ export class MachineListComponent implements OnInit {
 
     const qrData = this.selection.selected.map(m => ({
       machineName: m.name,
-      qrCodeData: m.qrCodeData,
+      qrCodeData: m.serialNumber,
       serialNumber: m.serialNumber
     }));
 

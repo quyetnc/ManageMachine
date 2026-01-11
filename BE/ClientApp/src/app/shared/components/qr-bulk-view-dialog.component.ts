@@ -17,10 +17,8 @@ export interface QrData {
             <div class="cut-line"></div>
             <!-- Ensure elementType is 'img' for better printing support -->
             <qrcode [qrdata]="item.qrCodeData" [width]="150" [errorCorrectionLevel]="'M'" [elementType]="'img'"></qrcode>
-            <div class="info">
-                <span class="machine-name">{{ item.machineName }}</span>
-                <span class="serial-number">{{ item.serialNumber }}</span>
-            </div>
+            <div class="code-text">{{ item.serialNumber }}</div>
+            <div class="machine-name">{{ item.machineName }}</div>
         </div>
       </div>
     </mat-dialog-content>

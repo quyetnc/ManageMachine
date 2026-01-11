@@ -54,7 +54,7 @@ namespace ManageMachine.API.Controllers
         public async Task<ActionResult<MachineDto>> GetByQRCode(string code)
         {
             // Allow even normal users to scan
-            var item = await _service.GetByQRCodeAsync(code);
+            var item = await _service.GetBySerialNumberAsync(code);
             if (item == null) return NotFound();
             return Ok(item);
         }

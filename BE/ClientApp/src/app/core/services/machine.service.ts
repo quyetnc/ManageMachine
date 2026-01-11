@@ -9,7 +9,6 @@ export interface Machine {
   name: string;
   description: string;
   imageUrl: string;
-  qrCodeData: string;
   serialNumber: string;
   machineTypeId: number;
   machineTypeName: string;
