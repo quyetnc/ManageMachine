@@ -29,6 +29,10 @@ const routes: Routes = [
         path: 'requests',
         loadChildren: () => import('./requests/requests.module').then(m => m.RequestsModule)
       },
+      {
+        path: 'settings',
+        loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)
+      },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ]
   }

@@ -1,0 +1,33 @@
+<div class="settings-container">
+    <h2>Admin Settings</h2>
+
+    <mat-card class="settings-card">
+        <mat-card-header>
+            <mat-icon mat-card-avatar>wallpaper</mat-icon>
+            <mat-card-title>Login Page Background</mat-card-title>
+            <mat-card-subtitle>Update the background image for the login screen</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="upload-section">
+                <input type="file" (change)="onFileSelected($event)" accept="image/*" #fileInput hidden>
+
+                <div class="preview-area" *ngIf="previewUrl">
+                    <img [src]="previewUrl" alt="Background Preview">
+                </div>
+
+                <div class="actions">
+                    <button mat-stroked-button color="primary" (click)="fileInput.click()">
+                        <mat-icon>upload</mat-icon> Choose Image
+                    </button>
+                    <span class="file-name" *ngIf="selectedFile">{{ selectedFile.name }}</span>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-raised-button color="primary" [disabled]="!selectedFile || uploading"
+                (click)="uploadBackground()">
+                <mat-icon>save</mat-icon> {{ uploading ? 'Uploading...' : 'Save Background' }}
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   loading = false;
   returnUrl: string;
+  private bgTimestamp = new Date().getTime();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,6 +31,11 @@ export class LoginComponent {
       password: ['', Validators.required]
     });
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
+
+  get backgroundImage() {
+    // Use cached timestamp to avoid NG0100 error
+    return `url('${environment.apiUrl.replace('/api', '')}/assets/images/login-bg.png?v=${this.bgTimestamp}')`;
   }
 
   get f() { return this.loginForm.controls; }
