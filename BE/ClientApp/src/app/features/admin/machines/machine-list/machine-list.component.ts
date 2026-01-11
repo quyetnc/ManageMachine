@@ -3,7 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { Machine, MachineService } from 'src/app/core/services/machine.service';
+import { Machine, MachineService, MachineType } from 'src/app/core/services/machine.service';
+import { UserService, User } from 'src/app/core/services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SelectionModel } from '@angular/cdk/collections';
 import { QrBulkViewDialogComponent } from 'src/app/shared/components/qr-bulk-view-dialog.component';
@@ -20,20 +21,39 @@ export class MachineListComponent implements OnInit {
   dataSource: MatTableDataSource<Machine>;
   selection = new SelectionModel<Machine>(true, []);
 
+  // Filter Data
+  users: User[] = [];
+  machineTypes: MachineType[] = [];
+
+  // Filter Values
+  filterValues = {
+    name: '',
+    type: '',
+    owner: ''
+  };
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private machineService: MachineService,
+    private userService: UserService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private router: Router
   ) {
     this.dataSource = new MatTableDataSource();
+    this.dataSource.filterPredicate = this.createFilter();
   }
 
   ngOnInit(): void {
     this.loadMachines();
+    this.loadAuxiliaryData();
+  }
+
+  loadAuxiliaryData() {
+    this.userService.getAll().subscribe(users => this.users = users);
+    this.machineService.getMachineTypes().subscribe(types => this.machineTypes = types);
   }
 
   loadMachines() {
@@ -50,13 +70,35 @@ export class MachineListComponent implements OnInit {
     });
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter(filterValue: string, key: string) {
+    this.filterValues[key as keyof typeof this.filterValues] = filterValue.trim().toLowerCase();
+    this.dataSource.filter = JSON.stringify(this.filterValues);
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  createFilter(): (data: Machine, filter: string) => boolean {
+    return (data: Machine, filter: string): boolean => {
+      const searchTerms = JSON.parse(filter);
+
+      // Name or Code filter (global search input)
+      const name = data.name ? data.name.toLowerCase() : '';
+      const serial = data.serialNumber ? data.serialNumber.toLowerCase() : '';
+      const filterName = searchTerms.name.toLowerCase();
+
+      const nameMatch = name.includes(filterName) || serial.includes(filterName);
+
+      // Type Filter
+      const typeMatch = searchTerms.type ? data.machineTypeName?.toLowerCase() === searchTerms.type : true;
+
+      // Owner Filter
+      // machine.userId -> Owner
+      const ownerMatch = searchTerms.owner ? data.userId?.toString() === searchTerms.owner : true;
+
+      return nameMatch && typeMatch && ownerMatch;
+    };
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
