@@ -55,9 +55,14 @@ namespace ManageMachine.Infrastructure.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("MachineTypeId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Machines");
                 });
@@ -197,7 +202,13 @@ namespace ManageMachine.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ManageMachine.Domain.Entities.User", "User")
+                        .WithMany("Machines")
+                        .HasForeignKey("UserId");
+
                     b.Navigation("MachineType");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ManageMachine.Domain.Entities.MachineParameter", b =>
@@ -232,6 +243,11 @@ namespace ManageMachine.Infrastructure.Migrations
             modelBuilder.Entity("ManageMachine.Domain.Entities.Parameter", b =>
                 {
                     b.Navigation("MachineParameters");
+                });
+
+            modelBuilder.Entity("ManageMachine.Domain.Entities.User", b =>
+                {
+                    b.Navigation("Machines");
                 });
 #pragma warning restore 612, 618
         }

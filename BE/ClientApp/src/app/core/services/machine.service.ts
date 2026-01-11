@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
+import { environment } from 'src/environments/environment';
 
 export interface Machine {
   id: number;
@@ -13,6 +14,7 @@ export interface Machine {
   machineTypeName: string;
   machineType?: MachineType;
   parameters: MachineParameter[];
+  userId?: number;
 }
 
 export interface MachineParameter {
@@ -36,12 +38,17 @@ export interface Parameter {
   description: string;
 }
 
+export interface CreateMachineParameterDto {
+  parameterId: number;
+  value: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class MachineService {
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private http: HttpClient) { }
 
   // Machines
   getMachines(): Observable<Machine[]> {
@@ -50,6 +57,10 @@ export class MachineService {
 
   getMachine(id: number): Observable<Machine> {
     return this.api.get(`Machines/${id}`);
+  }
+
+  getMyMachines(): Observable<Machine[]> {
+    return this.api.get<Machine[]>(`Machines/mine`);
   }
 
   createMachine(data: any): Observable<Machine> {
@@ -96,6 +107,20 @@ export class MachineService {
 
   createParameter(data: any): Observable<Parameter> {
     return this.api.post('parameters', data);
+  }
+
+  // New method: addParameter
+  addParameter(machineId: number, param: CreateMachineParameterDto): Observable<void> {
+    // Assuming api.post can handle the DTO and constructs the URL correctly
+    return this.api.post<void>(`Machines/${machineId}/parameters`, param);
+  }
+
+  // New method: uploadImage
+  uploadImage(file: File): Observable<{ url: string }> {
+    const formData = new FormData();
+    formData.append('file', file);
+    // Using HttpClient directly as per instruction, assuming environment.apiUrl is available
+    return this.http.post<{ url: string }>(`${environment.apiUrl}/upload`, formData);
   }
 
   updateParameter(id: number, data: any): Observable<void> {

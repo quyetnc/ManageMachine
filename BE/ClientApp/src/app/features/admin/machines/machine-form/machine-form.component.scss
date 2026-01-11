@@ -34,3 +34,19 @@ h3 {
 .param-row {
     margin-bottom: 8px;
 }
+
+.file-input-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.image-preview {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}

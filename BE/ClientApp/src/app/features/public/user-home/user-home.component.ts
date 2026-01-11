@@ -36,6 +36,10 @@ export class UserHomeComponent implements OnInit {
         this.router.navigate(['/public/scan']);
     }
 
+    openMyMachines() {
+        this.router.navigate(['/public/my-machines']);
+    }
+
     logout() {
         this.authService.logout();
     }

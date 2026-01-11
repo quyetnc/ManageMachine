@@ -13,7 +13,7 @@ import { QrViewDialogComponent } from 'src/app/shared/components/qr-view-dialog.
   styleUrls: ['./machine-list.component.scss']
 })
 export class MachineListComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'type', 'parameters', 'description', 'actions'];
+  displayedColumns: string[] = ['image', 'name', 'type', 'parameters', 'description', 'actions'];
   dataSource: MatTableDataSource<Machine>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

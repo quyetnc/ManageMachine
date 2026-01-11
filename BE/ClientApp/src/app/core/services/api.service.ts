@@ -12,19 +12,19 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${path}`, { params });
+  get<T>(path: string, params: HttpParams = new HttpParams()): Observable<T> {
+    return this.http.get<T>(`${this.apiUrl}/${path}`, { params });
   }
 
-  post(path: string, body: Object = {}): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${path}`, body);
+  post<T>(path: string, body: Object = {}): Observable<T> {
+    return this.http.post<T>(`${this.apiUrl}/${path}`, body);
   }
 
-  put(path: string, body: Object = {}): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${path}`, body);
+  put<T>(path: string, body: Object = {}): Observable<T> {
+    return this.http.put<T>(`${this.apiUrl}/${path}`, body);
   }
 
-  delete(path: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${path}`);
+  delete<T>(path: string): Observable<T> {
+    return this.http.delete<T>(`${this.apiUrl}/${path}`);
   }
 }

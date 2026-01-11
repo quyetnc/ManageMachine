@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: '', component: UserHomeComponent },
   { path: 'profile', component: UserProfileComponent },
   { path: 'types/:id', component: UserMachineListComponent },
+  { path: 'my-machines', component: UserMachineListComponent },
   { path: 'machines/:id', component: MachineDetailComponent }, // Supports both ID and GUID
   { path: 'scan', component: ScanComponent }
 ];

@@ -13,6 +13,9 @@ namespace ManageMachine.Domain.Entities
         public int MachineTypeId { get; set; }
         public MachineType MachineType { get; set; } = null!;
 
+        public int? UserId { get; set; }
+        public User? User { get; set; }
+
         public ICollection<MachineParameter> Parameters { get; set; } = new List<MachineParameter>();
     }
 }

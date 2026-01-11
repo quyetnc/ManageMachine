@@ -24,18 +24,31 @@ export class UserMachineListComponent implements OnInit {
 
     ngOnInit(): void {
         const idParam = this.route.snapshot.paramMap.get('id');
-        this.typeId = idParam ? Number(idParam) : 0;
         this.loading = true;
 
-        this.machineService.getMachines().subscribe({
+        // Check if we are in 'my-machines' route
+        const isMyMachines = this.router.url.includes('my-machines');
+
+        // ALWAYS load only my machines
+        this.machineService.getMyMachines().subscribe({
             next: (data) => {
                 this.machines = data;
-                this.filteredMachines = this.machines.filter(m => m.machineTypeId === this.typeId);
 
-                if (this.filteredMachines.length > 0) {
-                    this.typeName = this.filteredMachines[0].machineType?.name || 'Machines';
+                if (isMyMachines) {
+                    this.typeName = 'My Assigned Machines';
+                    this.filteredMachines = data;
                 } else {
-                    this.typeName = 'Machines';
+                    // Filter by type from my assigned machines
+                    this.typeId = idParam ? Number(idParam) : 0;
+                    this.filteredMachines = this.machines.filter(m => m.machineTypeId === this.typeId);
+
+                    if (this.filteredMachines.length > 0) {
+                        this.typeName = this.filteredMachines[0].machineType?.name || 'Machines';
+                    } else {
+                        // Try to find the type name from the typeId (optional, but nice to have)
+                        // For now just show generic
+                        this.typeName = 'Machines';
+                    }
                 }
 
                 this.loading = false;

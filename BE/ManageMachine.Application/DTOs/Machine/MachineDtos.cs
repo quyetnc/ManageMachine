@@ -61,6 +61,8 @@ namespace ManageMachine.Application.DTOs.Machine
         public string QRCodeData { get; set; } = string.Empty;
         public int MachineTypeId { get; set; }
         public string MachineTypeName { get; set; } = string.Empty;
+        public int? UserId { get; set; } // Owner
+        public string? UserFullName { get; set; } 
         public DateTime CreatedAt { get; set; }
 
         public List<MachineParameterDto> Parameters { get; set; } = new List<MachineParameterDto>();
@@ -72,6 +74,7 @@ namespace ManageMachine.Application.DTOs.Machine
         public string Description { get; set; } = string.Empty;
         public string ImageUrl { get; set; } = string.Empty;
         public int MachineTypeId { get; set; }
+        public int? UserId { get; set; } // Admin assigns this
         // Potentially accept parameters on creation
         public List<CreateMachineParameterDto> Parameters { get; set; } = new List<CreateMachineParameterDto>();
     }

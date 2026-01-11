@@ -24,8 +24,10 @@
             <div class="machine-card" *ngFor="let machine of filteredMachines" (click)="openMachine(machine.id)"
                 matRipple>
                 <div class="machine-image-placeholder">
-                    <!-- Real image would go here -->
-                    <mat-icon>image</mat-icon>
+                    <img *ngIf="machine.imageUrl"
+                        [src]="machine.imageUrl.startsWith('http') ? machine.imageUrl : 'http://localhost:5037/' + machine.imageUrl"
+                        class="machine-img">
+                    <mat-icon *ngIf="!machine.imageUrl">precision_manufacturing</mat-icon>
                 </div>
                 <div class="machine-info">
                     <h4>{{ machine.name }}</h4>

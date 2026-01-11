@@ -83,6 +83,20 @@ namespace ManageMachine.Application.Services.Implementations
             return _mapper.Map<MachineDto>(machine);
         }
 
+        public async Task<IReadOnlyList<MachineDto>> GetByUserIdAsync(int userId)
+        {
+            // Assuming Repository has GetAsync supporting expression, but need Includes (MachineType, etc.)
+            // GetAsync usually returns IReadOnlyList directly but might not Include.
+            // Best to use GetAllWithDetailsAsync and filter in memory if volume low, OR add specialized method to Repo.
+            // For now, let's try _machineRepository.GetAsync(m => m.UserId == userId) provided it maps correctly.
+            // Actually, if we want MachineType name, we need Includes.
+            // Let's assume GetAllWithDetailsAsync returns Queryable or List. It returns List.
+            // Optimization: Add GetByUserIdWithDetailsAsync to Repo later. For now:
+            var all = await _machineRepository.GetAllWithDetailsAsync();
+            var mine = all.Where(m => m.UserId == userId).ToList();
+            return _mapper.Map<IReadOnlyList<MachineDto>>(mine);
+        }
+
         public async Task UpdateAsync(int id, CreateMachineDto updateDto)
         {
             // 1. Load machine with existing parameters
@@ -100,6 +114,7 @@ namespace ManageMachine.Application.Services.Implementations
             machine.Description = updateDto.Description;
             machine.ImageUrl = updateDto.ImageUrl;
             machine.MachineTypeId = updateDto.MachineTypeId;
+            machine.UserId = updateDto.UserId;
 
             // 3. Sync Parameters
             if (updateDto.Parameters != null)

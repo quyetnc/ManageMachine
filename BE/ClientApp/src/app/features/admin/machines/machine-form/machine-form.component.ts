@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MachineService, MachineType, Parameter } from 'src/app/core/services/machine.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from 'src/app/core/services/user.service';
+import { User } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'app-machine-form',
@@ -15,11 +17,14 @@ export class MachineFormComponent implements OnInit {
   machineId: number | null = null;
   machineTypes: MachineType[] = [];
   availableParameters: Parameter[] = [];
+  users: User[] = [];
   loading = false;
+  imagePreview: string | null = null;
 
   constructor(
     private fb: FormBuilder,
     private machineService: MachineService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar
@@ -29,8 +34,36 @@ export class MachineFormComponent implements OnInit {
       description: [''],
       imageUrl: [''],
       machineTypeId: ['', Validators.required],
+      userId: [null], // Owner
       parameters: this.fb.array([])
     });
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.loading = true;
+      this.machineService.uploadImage(file).subscribe({
+        next: (res) => {
+          this.machineForm.patchValue({ imageUrl: res.url });
+          this.imagePreview = res.url; // Use relative path, might need base depending on setup
+          // Ideally backend returns full URL or we prepend base
+          // Since we used static files, if we return "uploads/file.jpg", we need to prepend API url or base.
+          // Let's assume we need to prepend environment.apiUrl base or similar.
+          // Actually, if served from API wwwroot, it is `http://localhost:5037/uploads/...`
+          // Let's just store the returned URL if it's relative?
+          // Wait, upload controller returns "uploads/..."
+          // We should probably fix the controller to return suitable path or handle it here.
+          // Let's assume for now we use the path as is and fix display if broken.
+          // Better: We stored "uploads/..." in DB.
+          this.loading = false;
+        },
+        error: (err) => {
+          this.handleError('Failed to upload image', err);
+          this.loading = false;
+        }
+      });
+    }
   }
 
   ngOnInit(): void {
@@ -41,6 +74,14 @@ export class MachineFormComponent implements OnInit {
     }
 
     this.loadMasterData();
+    this.loadUsers();
+  }
+
+  loadUsers() {
+    this.userService.getAll().subscribe({
+      next: (users) => this.users = users,
+      error: (err) => console.error('Failed to load users', err)
+    });
   }
 
   loadMasterData() {
@@ -73,8 +114,11 @@ export class MachineFormComponent implements OnInit {
           name: machine.name,
           description: machine.description,
           imageUrl: machine.imageUrl,
-          machineTypeId: machine.machineTypeId
+          machineTypeId: machine.machineTypeId,
+          userId: machine.userId
         });
+
+        this.imagePreview = machine.imageUrl;
 
         // Map existing parameters
         const paramControl = this.machineForm.get('parameters') as FormArray;

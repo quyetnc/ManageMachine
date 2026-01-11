@@ -19,6 +19,18 @@
             <span class="count-badge" *ngIf="!loading">{{ types.length }}</span>
         </div>
 
+        <!-- Favorites / My Machines Section -->
+        <div class="my-machines-card" (click)="openMyMachines()" matRipple>
+            <div class="card-icon">
+                <mat-icon>assignment_ind</mat-icon>
+            </div>
+            <div class="card-info">
+                <span class="card-title">My Assigned Machines</span>
+                <span class="card-subtitle">Manage your equipment</span>
+            </div>
+            <mat-icon class="arrow">chevron_right</mat-icon>
+        </div>
+
         <div class="grid-container" *ngIf="!loading">
             <div class="category-card" *ngFor="let type of types" (click)="openType(type.id)" matRipple>
                 <div class="category-icon">

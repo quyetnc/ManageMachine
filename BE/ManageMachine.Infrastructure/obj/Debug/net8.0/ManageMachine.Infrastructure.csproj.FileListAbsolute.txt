@@ -10,9 +10,9 @@ C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\ob
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\obj\Debug\net8.0\ManageMachine.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\obj\Debug\net8.0\ManageMachine.Infrastructure.AssemblyInfo.cs
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\obj\Debug\net8.0\ManageMachine.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\obj\Debug\net8.0\ManageMachine.Infrastructure.sourcelink.json
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\obj\Debug\net8.0\ManageMa.F8EDAD2F.Up2Date
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\obj\Debug\net8.0\ManageMachine.Infrastructure.dll
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\obj\Debug\net8.0\refint\ManageMachine.Infrastructure.dll
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\obj\Debug\net8.0\ManageMachine.Infrastructure.pdb
 C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\obj\Debug\net8.0\ref\ManageMachine.Infrastructure.dll
-C:\Users\quyet\OneDrive\Desktop\ManageMachine\BE\ManageMachine.Infrastructure\obj\Debug\net8.0\ManageMachine.Infrastructure.sourcelink.json

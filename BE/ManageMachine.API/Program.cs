@@ -1,5 +1,10 @@
 using ManageMachine.Application;
 using ManageMachine.Infrastructure;
+using ManageMachine.Application.Services;
+using ManageMachine.Application.Services.Implementations;
+using ManageMachine.Application.DTOs.Users;
+using ManageMachine.Application.DTOs.Auth;
+using ManageMachine.Domain.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -22,6 +27,16 @@ builder.Services.AddCors(options =>
                    .AllowCredentials();
         });
 });
+
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>(); // New Service
+
+// AutoMapper
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(cfg => {
+    cfg.CreateMap<User, UserDto>();
+    cfg.CreateMap<CreateUserDto, User>();
+}, typeof(Program));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -86,6 +101,8 @@ var app = builder.Build();
 app.UseCors("AllowAngularApp");
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles(); // Enable static files
 
 app.UseAuthentication();
 app.UseAuthorization();

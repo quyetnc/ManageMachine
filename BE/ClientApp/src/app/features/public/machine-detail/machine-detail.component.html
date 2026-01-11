@@ -14,7 +14,12 @@
     <div class="content-scroll-area">
         <div class="detail-header-card">
             <div class="image-section">
-                <mat-icon>precision_manufacturing</mat-icon>
+                <!-- Show Image if available -->
+                <img *ngIf="machine.imageUrl"
+                    [src]="machine.imageUrl.startsWith('http') ? machine.imageUrl : 'http://localhost:5037/' + machine.imageUrl"
+                    class="machine-detail-img">
+                <!-- Fallback Icon -->
+                <mat-icon *ngIf="!machine.imageUrl">precision_manufacturing</mat-icon>
             </div>
             <div class="title-section">
                 <h2>{{ machine.name }}</h2>
@@ -32,17 +37,14 @@
 
         <div class="info-card">
             <h3>Technical Specs</h3>
-            <div class="spec-row">
-                <span class="label">Model:</span>
-                <span class="value">XP-2000</span>
+
+            <div class="spec-row" *ngFor="let param of machine.parameters">
+                <span class="label">{{ param.parameterName }} ({{ param.parameterUnit }}):</span>
+                <span class="value">{{ param.value }}</span>
             </div>
-            <div class="spec-row">
-                <span class="label">Serial:</span>
-                <span class="value">SN-{{ machine.id }}</span>
-            </div>
-            <div class="spec-row">
-                <span class="label">Installed:</span>
-                <span class="value">2023-10-15</span>
+
+            <div class="empty-specs" *ngIf="!machine.parameters || machine.parameters.length === 0">
+                <p>No technical parameters configured.</p>
             </div>
         </div>
 

@@ -32,9 +32,31 @@
                 </div>
 
                 <div class="row">
+                    <div class="col">
+                        <mat-label>Machine Image</mat-label>
+                        <div class="file-input-container">
+                            <button mat-stroked-button type="button" (click)="fileInput.click()">
+                                <mat-icon>cloud_upload</mat-icon> Upload Image
+                            </button>
+                            <input #fileInput type="hidden" (change)="onFileSelected($event)" type="file"
+                                accept="image/*" style="display:none;">
+
+                            <img *ngIf="imagePreview"
+                                [src]="imagePreview.startsWith('http') ? imagePreview : 'http://localhost:5037/' + imagePreview"
+                                alt="Image Preview" class="image-preview">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <mat-form-field appearance="outline" class="col">
-                        <mat-label>Image URL</mat-label>
-                        <input matInput formControlName="imageUrl" placeholder="http://...">
+                        <mat-label>Assign to User</mat-label>
+                        <mat-select formControlName="userId">
+                            <mat-option [value]="null">-- None --</mat-option>
+                            <mat-option *ngFor="let user of users" [value]="user.id">
+                                {{user.fullName}} ({{user.username}})
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </div>
 

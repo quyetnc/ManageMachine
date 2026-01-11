@@ -26,6 +26,19 @@ namespace ManageMachine.API.Controllers
             return Ok(await _service.GetAllAsync());
         }
 
+        [HttpGet("mine")]
+        public async Task<ActionResult<IReadOnlyList<MachineDto>>> GetMyMachines()
+        {
+            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdClaim)) return Unauthorized();
+            
+            if (int.TryParse(userIdClaim, out int userId))
+            {
+                 return Ok(await _service.GetByUserIdAsync(userId));
+            }
+            return BadRequest("Invalid User Id in token");
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<MachineDto>> GetById(int id)
         {
